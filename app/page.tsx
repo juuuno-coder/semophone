@@ -403,12 +403,12 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 px-5 bg-[#FAF7F0] text-center">
+      <section className="py-16 md:py-24 lg:py-32 px-0 bg-[#FAF7F0] text-center">
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-          <h2 className="text-[32px] md:text-[40px] font-black leading-snug mb-4">
+          <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-black leading-snug mb-2 md:mb-4 px-5">
             궁금한 점이 있으신가요?
           </h2>
-          <p className="text-[16px] md:text-[18px] text-gray-500 mb-12 leading-relaxed">
+          <p className="text-[14px] md:text-[16px] lg:text-[18px] text-gray-500 mb-8 md:mb-12 leading-relaxed px-5">
             문의를 남겨주시면 빠르게 연락드리겠습니다<br />
             전화 상담도 환영합니다
           </p>
