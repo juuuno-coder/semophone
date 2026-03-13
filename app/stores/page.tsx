@@ -302,23 +302,23 @@ export default function StoresPage() {
             <div className="flex gap-2">
               <button
                 onClick={() => setViewMode('map')}
-                className={`flex-1 md:flex-none px-6 py-3 rounded-full font-bold transition-all duration-300 ${
+                className={`flex-1 md:flex-none px-6 py-3 rounded-full font-bold transition-all duration-300 whitespace-nowrap ${
                   viewMode === 'map'
                     ? 'bg-brand text-black shadow-brand hover:shadow-brand-hover hover:-translate-y-0.5 hover:scale-105'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:-translate-y-0.5'
                 }`}
               >
-                🗺️ 지도로 보기
+                🗺️ 지도
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`flex-1 md:flex-none px-6 py-3 rounded-full font-bold transition-all duration-300 ${
+                className={`flex-1 md:flex-none px-6 py-3 rounded-full font-bold transition-all duration-300 whitespace-nowrap ${
                   viewMode === 'list'
                     ? 'bg-brand text-black shadow-brand hover:shadow-brand-hover hover:-translate-y-0.5 hover:scale-105'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:-translate-y-0.5'
                 }`}
               >
-                📋 리스트로 보기
+                📋 리스트
               </button>
             </div>
 
