@@ -70,7 +70,7 @@ export default function Header() {
       {/* 모바일 메뉴 오버레이 */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 z-[1005] md:hidden"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
