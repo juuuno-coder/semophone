@@ -135,7 +135,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Banner - Slide Banner */}
-      <section ref={heroRef} className="relative w-full h-[815px] overflow-hidden mt-[56px] md:mt-[72px]">
+      <section ref={heroRef} className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[815px] overflow-hidden mt-[56px] md:mt-[72px]">
         {/* 슬라이드 배너 */}
         <div className="relative w-full h-full">
           {/* Banner 1 */}
@@ -154,8 +154,8 @@ export default function Home() {
           {/* Banner 2 */}
           <div className={`absolute inset-0 transition-opacity duration-700 ${currentBanner === 1 ? 'opacity-100' : 'opacity-0'}`}>
             <Image
-              src="/landing/banner2.png"
-              alt="세모폰 배너 2"
+              src="/landing/banner3.png"
+              alt="세모폰 배너 3"
               fill
               className="object-cover object-center"
               sizes="100vw"
