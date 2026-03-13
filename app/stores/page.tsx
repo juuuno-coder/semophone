@@ -172,37 +172,20 @@ export default function StoresPage() {
           {/* Step 3: Success - 결과 표시 */}
           {locationState === 'success' && (
             <div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                <div>
-                  <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                    ✅ 내 주변 가까운 매장을 찾았어요!
-                  </h2>
-                  <p className="text-sm md:text-base text-gray-600">
-                    위치 정보를 기반으로 가까운 매장을 표시합니다
-                  </p>
-                </div>
-                <button
-                  onClick={() => setLocationState('initial')}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors whitespace-nowrap"
-                >
-                  🔄 다시 찾기
-                </button>
+              <div className="mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                  ✅ 내 주변 가까운 매장을 찾았어요!
+                </h2>
+                <p className="text-sm md:text-base text-gray-600">
+                  위치 정보를 기반으로 가까운 매장을 표시합니다
+                </p>
               </div>
 
               {/* 가까운 매장 3개 */}
               {nearestStores.length > 0 && (
                 <div>
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="mb-6">
                     <h3 className="text-xl md:text-2xl font-black text-gray-900">🏆 가장 가까운 매장</h3>
-                    <button
-                      onClick={() => setViewMode('map')}
-                      className="text-sm text-brand font-semibold hover:text-primary-hover flex items-center gap-1"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                      </svg>
-                      지도로 보기
-                    </button>
                   </div>
 
                   <div className="space-y-4">
