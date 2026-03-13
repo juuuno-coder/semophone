@@ -174,7 +174,7 @@ export default function Home() {
       </section>
 
       {/* Hero Text + Stats Combined Section */}
-      <section className="bg-gradient-to-b from-[#FFFDF0] via-white to-[#1A1A1A] py-24 md:py-28 px-5 text-center">
+      <section className="bg-[#1A1A1A] py-24 md:py-28 px-5 text-center">
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           {/* Hero Text */}
           <div className="mb-16 mt-8">
