@@ -136,7 +136,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Banner - Slide Banner */}
-      <section ref={heroRef} className="hero-banner relative aspect-[4/3] sm:aspect-[16/9] lg:h-[815px] lg:aspect-auto overflow-hidden mt-[56px] md:mt-[72px]">
+      <section ref={heroRef} className="hero-banner relative aspect-[16/9] lg:h-[815px] lg:aspect-auto overflow-hidden mt-[56px] md:mt-[72px]">
         {/* 슬라이드 배너 */}
         <div className="relative w-full h-full">
           {/* Banner 1 */}
@@ -356,7 +356,7 @@ export default function Home() {
       <section ref={galleryRef} className="py-32 px-3 bg-[#1A1A1A] text-center overflow-hidden">
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <h2 className="text-[36px] md:text-[42px] font-black text-white leading-tight mb-16">
-            수도권 어디서든 세모폰이 가까이
+            수도권 어디서든<br className="md:hidden" /> 세모폰이 가까이
           </h2>
 
           <div className="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl">
