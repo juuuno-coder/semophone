@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sendContactNotification, ContactInquiry } from '@/lib/email';
+import { sendContactNotificationSMS } from '@/lib/ppurio';
 
 export async function POST(req: Request) {
   try {
@@ -61,19 +62,31 @@ export async function POST(req: Request) {
     }
 
     // 이메일 발송
-    const result = await sendContactNotification(inquiry);
+    const emailResult = await sendContactNotification(inquiry);
 
-    if (result.success) {
-      // TODO: 카카오 알림톡 발송 (나중에 구현)
-      // await sendKakaoNotification(inquiry);
+    // 뿌리오 SMS 발송 (병렬 처리)
+    const smsResult = await sendContactNotificationSMS({
+      name: inquiry.name,
+      phone: inquiry.phone,
+      storeName: inquiry.storeName,
+    });
+
+    // 이메일 또는 SMS 중 하나라도 성공하면 OK
+    if (emailResult.success || smsResult.success) {
+      const notifications: string[] = [];
+      if (emailResult.success) notifications.push('이메일');
+      if (smsResult.success) notifications.push('SMS');
 
       return NextResponse.json({
         success: true,
-        message: '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.'
+        message: '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.',
+        notifications: notifications.join(', ') + ' 알림 발송됨'
       });
     } else {
+      // 둘 다 실패한 경우
+      console.error('❌ Both email and SMS notification failed');
       return NextResponse.json(
-        { success: false, error: '이메일 발송에 실패했습니다.' },
+        { success: false, error: '알림 발송에 실패했습니다. 전화로 문의해주세요.' },
         { status: 500 }
       );
     }
