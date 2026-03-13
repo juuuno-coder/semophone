@@ -197,7 +197,7 @@ export default function StoreDetailModal({ store, isOpen, onClose }: StoreDetail
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#03C75A] text-white rounded-xl font-bold text-sm hover:bg-[#02b350] hover:shadow-lg hover:-translate-y-0.5 transition-all"
                 >
-                  플레이스
+                  상세정보
                 </a>
 
                 {/* 길찾기 */}
