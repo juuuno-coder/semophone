@@ -83,8 +83,14 @@ export async function sendContactNotificationSMS(inquiry: {
   const fromNumber = process.env.PPURIO_SENDER_NUMBER || ''; // 발신번호 (뿌리오에 등록된 번호)
   const adminPhones = process.env.CONTACT_SMS_RECIPIENTS?.split(',') || []; // 관리자 전화번호들
 
+  console.log('📱 SMS Config - From:', fromNumber);
+  console.log('📱 SMS Config - To:', adminPhones);
+  console.log('📱 SMS Config - PPURIO_ACCOUNT:', process.env.PPURIO_ACCOUNT);
+  console.log('📱 SMS Config - PPURIO_API_KEY:', process.env.PPURIO_API_KEY ? 'SET' : 'MISSING');
+
   if (!fromNumber || adminPhones.length === 0) {
     console.warn('⚠️ PPURIO_SENDER_NUMBER or CONTACT_SMS_RECIPIENTS is missing.');
+    console.log('📱 fromNumber:', fromNumber, 'adminPhones.length:', adminPhones.length);
     return { success: false, error: 'SMS configuration incomplete' };
   }
 

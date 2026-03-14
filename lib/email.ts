@@ -36,10 +36,13 @@ export async function sendContactNotification(inquiry: ContactInquiry) {
   const formattedPhone = formatPhone(inquiry.phone);
 
   // 수신자 이메일 (환경변수로 관리)
-  const recipientEmails = process.env.CONTACT_EMAIL_RECIPIENTS?.split(',').map(e => e.trim()) || ['juuuno1116@gmail.com'];
+  const recipientEmails = process.env.CONTACT_EMAIL_RECIPIENTS?.split(',').map(e => e.trim()) || ['designd@designd.co.kr', 'juuuno@naver.com', 'designdlab@designdlab.co.kr'];
 
   // 발신자 이메일 (Resend에서 인증된 도메인 필요)
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+
+  console.log('📧 Sending email to:', recipientEmails);
+  console.log('📧 From:', fromEmail);
 
   try {
     const { data, error } = await resend.emails.send({
