@@ -383,7 +383,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="hidden md:block py-16 md:py-24 lg:py-32 px-0 bg-[#FAF7F0] text-center">
+      <section className="hidden">
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-black leading-snug mb-2 md:mb-4 px-5">
             궁금한 점이 있으신가요?
