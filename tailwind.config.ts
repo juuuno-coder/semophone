@@ -9,14 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // 세상모든휴대폰 브랜드 컬러
+        // 세상모든휴대폰 브랜드 컬러 (확장된 팔레트)
         brand: {
-          DEFAULT: "#F2C811",
-          yellow: "#F2C811",
-          "yellow-hover": "#D4AD00",
-          "yellow-light": "#FFF8DC",
-          black: "#1A1A1A",
+          50: "#FFFDF0",      // 매우 연한 황색 (배경)
+          100: "#FFF8DC",     // 연한 황색
+          200: "#FFE787",     // 중간 황색
+          DEFAULT: "#F2C811", // 메인 브랜드 황색
+          600: "#D4AD00",     // 호버 황색
+          700: "#B89500",     // 진한 황색
+          800: "#9A7A00",     // 매우 진한 황색
         },
+        dark: {
+          DEFAULT: "#1A1A1A", // 메인 다크
+          surface: "#222222", // 다크 배경
+          hover: "#2A2A2A",   // 다크 호버
+        },
+        warm: {
+          DEFAULT: "#FAF7F0", // 따뜻한 베이지
+          light: "#FFFFFF",   // 화이트
+          dark: "#F5F2EA",    // 진한 베이지
+        },
+        // 레거시 호환성 (기존 코드 지원)
         primary: {
           DEFAULT: "#F2C811",
           hover: "#D4AD00",

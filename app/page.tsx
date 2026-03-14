@@ -112,6 +112,7 @@ export default function Home() {
             width={180}
             height={180}
             className="splash-logo"
+            priority
           />
         </div>
       )}
@@ -233,7 +234,7 @@ export default function Home() {
 
           {/* Benefits */}
           <div className="flex items-center justify-center gap-2 mb-9 fade-in">
-            <div className="px-5 py-2 rounded-full bg-[#1A1A1A] text-white text-sm font-bold">세모폰에만 있어요!</div>
+            <div className="px-5 py-2 rounded-full bg-dark text-white text-sm font-bold">세모폰에만 있어요!</div>
           </div>
 
           <div className="flex flex-col gap-3">
@@ -259,7 +260,7 @@ export default function Home() {
       </section>
 
       {/* Hero Text + Stats Combined Section */}
-      <section className="bg-[#1A1A1A] py-24 md:py-28 px-3 text-center">
+      <section className="bg-dark py-24 md:py-28 px-3 text-center">
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           {/* Hero Text */}
           <div className="mb-16 mt-8">
@@ -269,7 +270,7 @@ export default function Home() {
             <div className="hero-subtitle fade-in mb-4">수도권 휴대폰 성지 세모폰입니다</div>
             <Link
               href="/stores"
-              className="inline-block px-10 py-4 bg-[#F2C811] text-black rounded-full text-lg font-bold hover:bg-[#D4AD00] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 fade-in fade-in-d2"
+              className="inline-block px-10 py-4 bg-[#F2C811] text-black rounded-full text-lg font-bold hover:bg-brand-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 fade-in fade-in-d2"
             >
               가까운 성지 찾기
             </Link>
@@ -297,7 +298,7 @@ export default function Home() {
       </section>
 
       {/* Trust */}
-      <section ref={trustRef} className="py-24 px-3 bg-[#FAF7F0] text-center">
+      <section ref={trustRef} className="py-24 px-3 bg-warm text-center">
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <h2 className="section-title fade-in">
             마음 편히 물어보세요,<br className="md:hidden" /> 믿고 찾을 수 있어요
@@ -309,13 +310,13 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-4 mb-12">
             <div className="p-5 bg-white rounded-2xl text-center">
               <div className="text-[28px] font-black">
-                <span className="text-[#F2C811]">365</span>일
+                <span className="text-brand">365</span>일
               </div>
               <div className="text-[13px] text-gray-500 font-medium">사후관리</div>
             </div>
             <div className="p-5 bg-white rounded-2xl text-center">
               <div className="text-[28px] font-black">
-                <span className="text-[#F2C811]">40</span>+
+                <span className="text-brand">40</span>+
               </div>
               <div className="text-[13px] text-gray-500 font-medium">수도권 성지</div>
             </div>
@@ -330,6 +331,7 @@ export default function Home() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 672px"
+                quality={75}
               />
             </div>
           </div>
@@ -337,7 +339,7 @@ export default function Home() {
       </section>
 
       {/* Gallery */}
-      <section ref={galleryRef} className="py-32 px-3 bg-[#1A1A1A] text-center overflow-hidden">
+      <section ref={galleryRef} className="py-32 px-3 bg-dark text-center overflow-hidden">
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <h2 className="text-[36px] md:text-[42px] font-black text-white leading-tight mb-16">
             수도권 어디서든<br className="md:hidden" /> 세모폰이 가까이
@@ -350,6 +352,7 @@ export default function Home() {
                 alt="매장"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 600px"
               />
             </div>
           </div>
@@ -360,7 +363,7 @@ export default function Home() {
       <section className="py-32 px-3 bg-white text-center">
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <h2 className="text-[32px] md:text-[40px] font-black leading-snug mb-4">
-            단 한 명의 고객도 <span className="text-[#F2C811]">손해보지 않도록</span>
+            단 한 명의 고객도<br className="md:hidden" /> <span className="text-brand">손해보지 않도록</span>
           </h2>
           <p className="text-[16px] md:text-[18px] text-gray-500 mb-10 leading-relaxed">
             숨은 비용 없이 투명하게, 정직하게<br />
@@ -376,6 +379,7 @@ export default function Home() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 672px"
+                quality={75}
               />
             </div>
           </div>
@@ -383,7 +387,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="hidden md:block py-16 md:py-24 lg:py-32 px-0 bg-[#FAF7F0] text-center">
+      <section className="hidden md:block py-16 md:py-24 lg:py-32 px-0 bg-warm text-center">
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-black leading-snug mb-2 md:mb-4 px-5">
             궁금한 점이 있으신가요?
