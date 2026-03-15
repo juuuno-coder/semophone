@@ -26,7 +26,11 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
       if (isMobile) {
         // 모바일이면 app 도메인으로 리다이렉트
-        const appUrl = window.location.href.replace('semophone.co.kr', 'app.semophone.co.kr');
+        // www.semophone.co.kr → app.semophone.co.kr
+        // semophone.co.kr → app.semophone.co.kr
+        const appUrl = window.location.href
+          .replace('www.semophone.co.kr', 'app.semophone.co.kr')
+          .replace(/^(https?:\/\/)semophone\.co\.kr/, '$1app.semophone.co.kr');
         window.location.href = appUrl;
       }
     }
