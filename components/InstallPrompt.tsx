@@ -58,7 +58,7 @@ export function InstallPrompt() {
     <AnimatePresence>
       {showPrompt && (
         <motion.div
-          className="fixed bottom-20 left-4 right-4 md:left-auto md:right-8 md:w-96 z-critical"
+          className="fixed bottom-20 left-4 right-4 md:left-auto md:right-8 md:w-96 z-sticky-cta"
           style={{ marginBottom: 'var(--safe-bottom)' }}
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
