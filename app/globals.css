@@ -490,8 +490,8 @@
 /* RESPONSIVE */
 @media (min-width: 768px) {
   :root { --max-w: 720px; }
-  .hamburger { display: none; }
-  .mobile-menu { display: none; }
+  /* .hamburger { display: none; } */
+  /* .mobile-menu { display: none; } */
   .nav-desktop { display: flex; }
   .header-inner { height: 72px; }
   .hero { padding: 120px 24px 80px; }
