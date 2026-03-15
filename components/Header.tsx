@@ -89,42 +89,44 @@ export default function Header() {
   ];
 
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="header-inner" style={{ maxWidth: '1200px' }}>
-        <Link href="/" className="logo relative" style={{ width: '200px', height: '40px', display: 'block' }}>
-          {logos.map((logo, index) => (
-            <Image
-              key={index}
-              src={logo.src}
-              alt="세모폰"
-              width={logo.width}
-              height={logo.height}
-              className="absolute left-0 top-0 transition-opacity duration-1000"
-              style={{
-                opacity: currentLogo === index ? 1 : 0,
-              }}
-            />
-          ))}
-        </Link>
-        <nav className="nav-desktop" style={{ gap: '2rem' }}>
-          <Link href="/#why" className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors">
-            세모폰
+    <>
+      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+        <div className="header-inner" style={{ maxWidth: '1200px' }}>
+          <Link href="/" className="logo relative" style={{ width: '200px', height: '40px', display: 'block' }}>
+            {logos.map((logo, index) => (
+              <Image
+                key={index}
+                src={logo.src}
+                alt="세모폰"
+                width={logo.width}
+                height={logo.height}
+                className="absolute left-0 top-0 transition-opacity duration-1000"
+                style={{
+                  opacity: currentLogo === index ? 1 : 0,
+                }}
+              />
+            ))}
           </Link>
-          <Link
-            href="/stores"
-            className="px-6 py-2.5 bg-[#F2C811] text-black rounded-full text-base font-bold hover:bg-[#D4AD00] transition-all hover:shadow-lg hover:-translate-y-0.5"
+          <nav className="nav-desktop" style={{ gap: '2rem' }}>
+            <Link href="/#why" className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+              세모폰
+            </Link>
+            <Link
+              href="/stores"
+              className="px-6 py-2.5 bg-[#F2C811] text-black rounded-full text-base font-bold hover:bg-[#D4AD00] transition-all hover:shadow-lg hover:-translate-y-0.5"
+            >
+              성지찾기
+            </Link>
+          </nav>
+          <button
+            className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="메뉴"
           >
-            성지찾기
-          </Link>
-        </nav>
-        <button
-          className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="메뉴"
-        >
-          <span></span>
-        </button>
-      </div>
+            <span></span>
+          </button>
+        </div>
+      </header>
 
       {/* 전체 화면 슬라이드 메뉴 */}
       <AnimatePresence>
@@ -282,6 +284,6 @@ export default function Header() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
