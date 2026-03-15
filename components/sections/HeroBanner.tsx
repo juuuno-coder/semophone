@@ -15,7 +15,7 @@ const HeroBanner = forwardRef<HTMLElement>((props, ref) => {
   }, []);
 
   return (
-    <section ref={ref} className="hero-banner relative aspect-[16/9] lg:h-[815px] lg:aspect-auto overflow-hidden mt-[56px] md:mt-[72px]">
+    <section ref={ref} className="hero-banner relative aspect-[16/9] lg:h-[815px] lg:aspect-auto overflow-hidden mt-[56px] md:mt-[72px] z-base">
       {/* 슬라이드 배너 */}
       <div className="relative w-full h-full">
         {/* Banner 1 - 첫 배너만 priority */}
