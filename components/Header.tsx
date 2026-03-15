@@ -115,7 +115,10 @@ export default function Header() {
           </nav>
           <button
             className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => {
+              haptics.light();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
             aria-label="메뉴"
           >
             <span></span>
@@ -124,24 +127,30 @@ export default function Header() {
       </header>
 
       {/* 전체 화면 슬라이드 메뉴 */}
-      <>
-        {/* 오버레이 */}
-        <div
-          className={`fixed inset-0 bg-black/95 transition-opacity duration-300 ${
-            mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-          }`}
-          style={{ zIndex: 10000 }}
-          onClick={() => {
-            haptics.light();
-            setMobileMenuOpen(false);
-          }}
-        />
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* 오버레이 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/95 z-[10000]"
+              onClick={() => {
+                haptics.light();
+                setMobileMenuOpen(false);
+              }}
+            />
 
-        {/* 슬라이드 패널 */}
-        <nav
-          className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}
-          style={{ zIndex: 10001 }}
-        >
+            {/* 슬라이드 패널 */}
+            <motion.nav
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="fixed right-0 top-0 h-full w-[280px] bg-white shadow-2xl overflow-y-auto z-[10001]"
+            >
               {/* 닫기 버튼 */}
               <button
                 onClick={() => {
@@ -157,7 +166,7 @@ export default function Header() {
               </button>
 
               {/* 메뉴 콘텐츠 */}
-              <div className="flex flex-col p-8 pt-20">
+              <div className="flex flex-col p-8 pt-20 h-full">
                 {/* 메인 메뉴 */}
                 <div className="flex flex-col gap-2">
                   <MenuItem
@@ -249,8 +258,10 @@ export default function Header() {
                   <p className="text-xs text-gray-400 mt-1">© 2024 세모폰</p>
                 </div>
               </div>
-            </nav>
-      </>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
