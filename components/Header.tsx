@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -44,6 +45,12 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [currentLogo, setCurrentLogo] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // 클라이언트 사이드 마운트 확인
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // 스크롤 잠금 (useScrollLock 훅 사용)
   useScrollLock(mobileMenuOpen);
@@ -140,25 +147,26 @@ export default function Header() {
         </div>
       </header>
 
-      {/* 전체 화면 슬라이드 메뉴 */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            {/* 오버레이 */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/95 z-menu-overlay"
-              onClick={() => {
-                haptics.light();
-                setMobileMenuOpen(false);
-              }}
-            />
+      {/* 전체 화면 슬라이드 메뉴 - Portal로 body에 직접 렌더링 */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <>
+              {/* 오버레이 */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black/95 z-menu-overlay"
+                onClick={() => {
+                  haptics.light();
+                  setMobileMenuOpen(false);
+                }}
+              />
 
-            {/* 슬라이드 패널 */}
-            <motion.nav
+              {/* 슬라이드 패널 */}
+              <motion.nav
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -272,10 +280,12 @@ export default function Header() {
                   <p className="text-xs text-gray-400 mt-1">© 2024 세모폰</p>
                 </div>
               </div>
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>
+              </motion.nav>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 }
