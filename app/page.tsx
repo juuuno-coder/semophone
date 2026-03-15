@@ -19,6 +19,7 @@ export default function Home() {
   const [showStickyCta, setShowStickyCta] = useState(false);
   const [counter, setCounter] = useState(0);
   const [trustBarAnimated, setTrustBarAnimated] = useState(false);
+  const [isAppDomain, setIsAppDomain] = useState(false);
 
   const heroRef = useRef<HTMLElement>(null);
   const trustRef = useRef<HTMLElement>(null);
@@ -34,6 +35,12 @@ export default function Home() {
       }
     }, 2000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // App 도메인 체크
+  useEffect(() => {
+    const hostname = window.location.hostname;
+    setIsAppDomain(hostname.includes('app.semophone.co.kr') || hostname === 'localhost');
   }, []);
 
   // Sticky CTA
@@ -222,7 +229,7 @@ export default function Home() {
       <Footer />
 
       {/* Sticky CTA */}
-      <div className={`sticky-cta ${showStickyCta ? 'visible' : ''}`}>
+      <div className={`sticky-cta ${showStickyCta ? 'visible' : ''} ${isAppDomain ? 'sticky-cta-with-nav' : ''}`}>
         <Link href="/stores" className="sticky-cta-btn">
           가까운 성지 찾기
         </Link>
