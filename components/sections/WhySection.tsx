@@ -1,11 +1,29 @@
 import Badge from '@/components/ui/Badge';
+import { BentoGrid } from '@/components/layouts/BentoGrid';
+import BenefitCard from '@/components/ui/BenefitCard';
 
 export default function WhySection() {
   const benefits = [
-    { icon: '💰', text: '지원금 최대로 받고 싶다면, 성지!' },
-    { icon: '🤝', text: '단통법 폐지! 지원금 제한없는 성지' },
-    { icon: '⚡', text: '30분 내 즉시 개통 완료' },
-    { icon: '🛡️', text: '개통 후에도 365일 사후관리' },
+    {
+      icon: '💰',
+      title: '지원금 최대로!',
+      description: '성지에서만 가능한 최대 지원금'
+    },
+    {
+      icon: '🤝',
+      title: '단통법 폐지!',
+      description: '지원금 제한없는 자유로운 개통'
+    },
+    {
+      icon: '⚡',
+      title: '즉시 개통',
+      description: '30분 내 빠른 개통 완료'
+    },
+    {
+      icon: '🛡️',
+      title: '365일 사후관리',
+      description: '개통 후에도 끝까지 책임'
+    },
   ];
 
   return (
@@ -24,20 +42,17 @@ export default function WhySection() {
           <Badge variant="dark">세모폰에만 있어요!</Badge>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <BentoGrid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-auto">
           {benefits.map((item, i) => (
-            <div
+            <BenefitCard
               key={i}
-              className="flex items-center gap-4 p-5 bg-gray-100 rounded-2xl hover:bg-brand-50 hover:scale-105 transition-all fade-in"
-              style={{ transitionDelay: `${i * 0.1}s` }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl flex-shrink-0 shadow-sm">
-                {item.icon}
-              </div>
-              <div className="text-[15px] font-semibold leading-snug">{item.text}</div>
-            </div>
+              icon={item.icon}
+              title={item.title}
+              description={item.description}
+              delay={i * 0.1}
+            />
           ))}
-        </div>
+        </BentoGrid>
       </div>
     </section>
   );

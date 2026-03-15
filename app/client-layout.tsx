@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react';
 import { InstallPrompt } from '@/components/InstallPrompt';
+import MobileNav from '@/components/MobileNav';
+import { PageTransition } from '@/components/PageTransition';
 import { registerServiceWorker } from '@/lib/registerSW';
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -12,7 +14,10 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {children}
+      <PageTransition>
+        {children}
+      </PageTransition>
+      <MobileNav />
       <InstallPrompt />
     </>
   );

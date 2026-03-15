@@ -3,6 +3,7 @@
 import { forwardRef } from 'react';
 import Image from 'next/image';
 import StatCard from '@/components/ui/StatCard';
+import { BentoGrid } from '@/components/layouts/BentoGrid';
 
 const TrustSection = forwardRef<HTMLElement>((props, ref) => {
   return (
@@ -15,11 +16,11 @@ const TrustSection = forwardRef<HTMLElement>((props, ref) => {
           세모폰은 개통 후에도 끝까지 책임집니다.
         </p>
 
-        <div className="grid grid-cols-3 gap-4 mb-12">
-          <StatCard value="365" unit="일" label="사후관리" highlight />
-          <StatCard value="40" unit="+" label="수도권 성지" highlight />
-          <StatCard value="4.8" unit="★" label="고객 만족도" highlight />
-        </div>
+        <BentoGrid className="grid-cols-1 md:grid-cols-3 auto-rows-[180px] mb-12">
+          <StatCard value="365" unit="일" label="사후관리" useBento delay={0} />
+          <StatCard value="40" unit="+" label="수도권 성지" useBento delay={0.1} />
+          <StatCard value="4.8" unit="★" label="고객 만족도" useBento delay={0.2} />
+        </BentoGrid>
 
         {/* 이미지 */}
         <div className="max-w-2xl mx-auto">
