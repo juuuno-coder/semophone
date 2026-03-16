@@ -106,7 +106,10 @@ export default function Header() {
 
   return (
     <>
-      <header className={`header z-header ${scrolled ? 'scrolled' : ''}`}>
+      <header
+        className={`header ${scrolled ? 'scrolled' : ''}`}
+        style={{ zIndex: 9000 }}
+      >
         <div className="header-inner max-w-container-xl">
           <Link href="/" className="logo relative w-[200px] h-10 block">
             {logos.map((logo, index) => (
@@ -150,9 +153,9 @@ export default function Header() {
       {/* 전체 화면 슬라이드 메뉴 - Portal로 body에 직접 렌더링 */}
       {mounted && mobileMenuOpen && createPortal(
         <>
-          {/* 오버레이 */}
+          {/* 오버레이 - 투명 (클릭 영역만) */}
           <div
-            className="fixed inset-0 bg-black/95"
+            className="fixed inset-0"
             style={{
               position: 'fixed',
               top: 0,
@@ -162,6 +165,7 @@ export default function Header() {
               width: '100vw',
               height: '100vh',
               zIndex: 99999,
+              backgroundColor: 'transparent',
             }}
             onClick={() => {
               haptics.light();
@@ -245,17 +249,17 @@ export default function Header() {
                 {/* 구분선 */}
                 <div className="my-6 border-t border-gray-300" />
 
-                {/* 하위 메뉴 - 작게 */}
-                <div className="flex flex-col gap-1">
+                {/* 하위 메뉴 - 매우 작게 */}
+                <div className="flex flex-col gap-0.5">
                   <Link
                     href="/terms"
                     onClick={() => {
                       haptics.light();
                       setMobileMenuOpen(false);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-all"
+                    className="flex items-center gap-1.5 px-2 py-1.5 text-[10px] text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded transition-all"
                   >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     이용약관
@@ -266,9 +270,9 @@ export default function Header() {
                       haptics.light();
                       setMobileMenuOpen(false);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-all"
+                    className="flex items-center gap-1.5 px-2 py-1.5 text-[10px] text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded transition-all"
                   >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                     개인정보처리방침
@@ -279,9 +283,9 @@ export default function Header() {
                       haptics.light();
                       setMobileMenuOpen(false);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-all"
+                    className="flex items-center gap-1.5 px-2 py-1.5 text-[10px] text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded transition-all"
                   >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                     고객센터

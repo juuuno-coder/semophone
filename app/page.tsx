@@ -136,13 +136,11 @@ export default function Home() {
 
       {/* 본문 - stacking context 격리 */}
       <main style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
-        {/* Hero Banner - app 도메인에서는 CompactHero */}
-        {isAppDomain ? (
-          <CompactHero ref={heroRef} />
-        ) : (
-          <HeroBanner ref={heroRef} />
-        )}
+        {/* Hero Banner - 통일 */}
+        <CompactHero ref={heroRef} />
 
+      {/* Why 성지 + Benefits */}
+      <WhySection />
       {/* Why 성지 + Benefits */}
       <WhySection />
 
