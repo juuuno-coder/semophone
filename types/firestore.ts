@@ -5,6 +5,7 @@ export interface Benefit {
   icon: string;           // 이모지 (예: 💰, 🤝)
   title: string;
   description: string;
+  bannerImage?: string;   // 배너 이미지 URL (선택)
   order: number;          // 정렬 순서
   isActive: boolean;      // 활성화 여부
   createdAt: Timestamp;

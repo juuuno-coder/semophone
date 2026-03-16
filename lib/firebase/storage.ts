@@ -2,6 +2,25 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import { storage } from './config';
 
 /**
+ * 혜택 배너 이미지 업로드 및 최적화
+ * @param benefitId 혜택 ID (신규 생성 시 'new')
+ * @param file 업로드할 이미지 파일
+ * @returns Firebase Storage URL
+ */
+export async function uploadBenefitImage(benefitId: string, file: File): Promise<string> {
+  const timestamp = Date.now();
+  const fileName = `${timestamp}_${file.name}`;
+  const storageRef = ref(storage, `benefits/${benefitId}/${fileName}`);
+
+  // 클라이언트 사이드 리사이징 (1200x600, JPEG 85%) - 배너 비율
+  const resizedFile = await resizeImage(file, 1200, 600);
+
+  await uploadBytes(storageRef, resizedFile);
+  const downloadURL = await getDownloadURL(storageRef);
+  return downloadURL;
+}
+
+/**
  * 매장 이미지 업로드 및 최적화
  * @param storeId 매장 ID
  * @param file 업로드할 이미지 파일
@@ -18,6 +37,20 @@ export async function uploadStoreImage(storeId: string, file: File): Promise<str
   await uploadBytes(storageRef, resizedFile);
   const downloadURL = await getDownloadURL(storageRef);
   return downloadURL;
+}
+
+/**
+ * Firebase Storage에서 혜택 이미지 삭제
+ * @param imageUrl 삭제할 이미지 URL
+ */
+export async function deleteBenefitImage(imageUrl: string): Promise<void> {
+  try {
+    const imageRef = ref(storage, imageUrl);
+    await deleteObject(imageRef);
+  } catch (error) {
+    console.error('이미지 삭제 오류:', error);
+    // URL 형식이 아닌 경우 무시
+  }
 }
 
 /**
