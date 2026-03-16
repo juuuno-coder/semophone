@@ -88,7 +88,6 @@
     padding-top: env(safe-area-inset-top);
     background: #ffffff;
     transition: box-shadow 0.3s;
-    will-change: transform;
     opacity: 1;
     visibility: visible;
   }
