@@ -127,14 +127,29 @@ export default function Header() {
             ))}
           </Link>
           <nav className="nav-desktop" style={{ gap: '2rem' }}>
-            <Link href="/#why" className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors">
-              세모폰
+            <Link
+              href="/about"
+              className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              소개
+            </Link>
+            <Link
+              href="/history"
+              className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              히스토리
+            </Link>
+            <Link
+              href="/careers"
+              className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              채용정보
             </Link>
             <Link
               href="/stores"
               className="px-6 py-2.5 bg-brand text-black rounded-full text-base font-bold hover:bg-brand-600 transition-all hover:shadow-lg hover:-translate-y-0.5"
             >
-              성지찾기
+              매장찾기
             </Link>
           </nav>
           <button
@@ -204,13 +219,33 @@ export default function Header() {
                 {/* 메인 메뉴 */}
                 <div className="flex flex-col gap-2">
                   <MenuItem
-                    href="/#why"
+                    href="/about"
                     icon={
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
                     }
-                    label="세모폰 소개"
+                    label="소개"
+                    onClick={() => setMobileMenuOpen(false)}
+                  />
+                  <MenuItem
+                    href="/history"
+                    icon={
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    }
+                    label="히스토리"
+                    onClick={() => setMobileMenuOpen(false)}
+                  />
+                  <MenuItem
+                    href="/careers"
+                    icon={
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    }
+                    label="채용정보"
                     onClick={() => setMobileMenuOpen(false)}
                   />
                   <MenuItem
@@ -221,27 +256,7 @@ export default function Header() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     }
-                    label="성지 찾기"
-                    onClick={() => setMobileMenuOpen(false)}
-                  />
-                  <MenuItem
-                    href="/#why"
-                    icon={
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                      </svg>
-                    }
-                    label="혜택"
-                    onClick={() => setMobileMenuOpen(false)}
-                  />
-                  <MenuItem
-                    href="/contact"
-                    icon={
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    }
-                    label="문의하기"
+                    label="매장찾기"
                     onClick={() => setMobileMenuOpen(false)}
                   />
                 </div>
