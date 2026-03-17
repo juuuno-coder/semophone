@@ -37,17 +37,19 @@ export default function CareersPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">회사 문화</h2>
             <p className="text-gray-600 mb-12">성장을 응원하는 문화</p>
 
-            <BentoGrid className="grid-cols-1 md:grid-cols-3 auto-rows-auto">
-              {cultureValues.map((culture, i) => (
-                <BenefitCard
-                  key={i}
-                  icon={culture.icon}
-                  title={culture.title}
-                  description={culture.description}
-                  delay={i * 0.1}
-                />
-              ))}
-            </BentoGrid>
+            <div className="flex justify-center">
+              <BentoGrid className="grid-cols-1 md:grid-cols-3 auto-rows-auto max-w-4xl">
+                {cultureValues.map((culture, i) => (
+                  <BenefitCard
+                    key={i}
+                    icon={culture.icon}
+                    title={culture.title}
+                    description={culture.description}
+                    delay={i * 0.1}
+                  />
+                ))}
+              </BentoGrid>
+            </div>
           </div>
         </section>
 
