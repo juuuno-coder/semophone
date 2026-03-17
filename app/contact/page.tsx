@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -15,9 +16,13 @@ export default function ContactPage() {
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-brand rounded-3xl mb-8 shadow-xl">
-            <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
+            <Image
+              src="/icons/이메일1.png"
+              alt="문의하기"
+              width={40}
+              height={40}
+              className="w-10 h-10 object-contain"
+            />
           </div>
 
           <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
