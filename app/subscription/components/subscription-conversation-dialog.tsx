@@ -8,8 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/Button';
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { createSubscription } from '@/lib/subscription/firestore';
@@ -248,7 +247,8 @@ export function SubscriptionConversationDialog({
 
         {/* 입력 영역 */}
         <div className="flex gap-2 pt-4 border-t border-brand/10">
-          <Input
+          <input
+            type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => {
@@ -258,13 +258,14 @@ export function SubscriptionConversationDialog({
               }
             }}
             placeholder="예: 넷플릭스, 유튜브 사용해요"
-            className="bg-warm border-brand/20"
+            className="flex-1 px-4 py-3 bg-warm border-2 border-brand/20 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:opacity-50 disabled:cursor-not-allowed text-dark placeholder:text-gray-400"
             disabled={loading}
           />
           <Button
+            variant="primary"
+            size="lg"
             onClick={handleSend}
             disabled={loading || !input.trim()}
-            className="bg-brand hover:bg-brand-600 text-dark font-bold"
           >
             전송
           </Button>
@@ -273,9 +274,11 @@ export function SubscriptionConversationDialog({
         {/* 완료 버튼 */}
         {collectedSubscriptions.length > 0 && (
           <Button
+            variant="secondary"
+            size="lg"
             onClick={handleComplete}
             disabled={loading}
-            className="w-full bg-dark hover:bg-dark/90 text-brand font-bold"
+            fullWidth
           >
             {collectedSubscriptions.length}개 구독 추가하기
           </Button>

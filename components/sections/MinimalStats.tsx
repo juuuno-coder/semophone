@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
@@ -23,16 +23,15 @@ export default function MinimalStats() {
   }, []);
 
   return (
-    <section className="bg-dark py-24 px-4 md:px-6 lg:px-8 relative overflow-hidden">
-      {/* 배경 패턴 */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-brand rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-brand rounded-full blur-3xl"></div>
-      </div>
-
+    <section
+      className="py-24 px-4 md:px-6 lg:px-8 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #FEE500 0%, #FDD835 50%, #FEE500 100%)',
+      }}
+    >
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* 왼쪽: 이미지 슬라이드쇼 */}
+          {/* 왼쪽: 이미지 슬라이드쇼 (100% 표시) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -40,26 +39,17 @@ export default function MinimalStats() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="aspect-[4/3] relative rounded-2xl overflow-hidden bg-gray-900">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentImageIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1, ease: 'easeInOut' }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={storeImages[currentImageIndex]}
-                    alt={`세모폰 매장 ${currentImageIndex + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={currentImageIndex === 0}
-                  />
-                </motion.div>
-              </AnimatePresence>
+            <div className="relative rounded-2xl overflow-hidden">
+              {/* 즉시 전환 - 페이드 제거 */}
+              <Image
+                src={storeImages[currentImageIndex]}
+                alt={`세모폰 매장 ${currentImageIndex + 1}`}
+                width={800}
+                height={600}
+                className="w-full h-auto object-contain"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority={currentImageIndex === 0}
+              />
 
               {/* 인디케이터 */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
@@ -68,7 +58,7 @@ export default function MinimalStats() {
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex ? 'bg-brand w-8' : 'bg-white/50'
+                      index === currentImageIndex ? 'bg-dark w-8' : 'bg-dark/50'
                     }`}
                     aria-label={`이미지 ${index + 1}`}
                   />
@@ -85,13 +75,13 @@ export default function MinimalStats() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-              <span className="text-gray-100">수도권 </span>
-              <span className="text-brand">40개 성지</span>
-              <span className="text-gray-100">에서</span><br />
-              <span className="text-brand">검증된 신뢰</span>
+              <span className="text-dark">수도권 </span>
+              <span className="text-dark">40개 성지</span>
+              <span className="text-dark">에서</span><br />
+              <span className="text-dark">검증된 신뢰</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed">
+            <p className="text-lg md:text-xl text-dark/80 mb-10 leading-relaxed">
               15만 명이 선택한 세모폰,<br />
               가까운 매장에서 최저가를 경험하세요
             </p>
@@ -104,9 +94,9 @@ export default function MinimalStats() {
                 { number: '4.8★', label: '만족도' },
                 { number: '365일', label: '사후관리' },
               ].map((stat, i) => (
-                <div key={i} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                  <div className="text-3xl font-black text-brand mb-2">{stat.number}</div>
-                  <div className="text-sm text-gray-400">{stat.label}</div>
+                <div key={i} className="bg-black/5 backdrop-blur-sm rounded-xl p-6 border border-black/10">
+                  <div className="text-3xl font-black text-dark mb-2">{stat.number}</div>
+                  <div className="text-sm text-dark/60">{stat.label}</div>
                 </div>
               ))}
             </div>
