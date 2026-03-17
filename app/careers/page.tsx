@@ -5,6 +5,7 @@ import BenefitCard from '@/components/ui/BenefitCard';
 import JobCard from '@/components/ui/JobCard';
 import { benefits, jobOpenings, cultureValues } from '@/data/careers';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata = {
   title: '채용정보 | 세모폰',
@@ -98,7 +99,8 @@ export default function CareersPage() {
               href="mailto:recruit@semophone.co.kr"
               className="inline-flex items-center gap-2 bg-brand text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-brand-600 transition-all hover:shadow-brand-hover"
             >
-              📧 이력서 보내기
+              <Image src="/icons/이메일1.png" alt="" width={24} height={24} className="w-6 h-6 object-contain" />
+              이력서 보내기
             </Link>
           </div>
         </section>

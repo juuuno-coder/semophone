@@ -11,31 +11,24 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <main style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-brand rounded-3xl mb-8 shadow-xl">
-            <Image
-              src="/icons/이메일1.png"
-              alt="문의하기"
-              width={40}
-              height={40}
-              className="w-10 h-10 object-contain"
-            />
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
-            문의하기
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 font-medium">
+      <section
+        className="relative h-[40vh] min-h-[320px] max-h-[480px] overflow-hidden mt-[56px] md:mt-[72px]"
+        style={{
+          background: 'linear-gradient(135deg, #FEE500 0%, #FDD835 50%, #FEE500 100%)',
+        }}
+      >
+        <div className="relative h-full flex flex-col items-center justify-center px-6 text-center">
+          <h1 className="text-4xl md:text-5xl font-black text-dark mb-4">문의하기</h1>
+          <p className="text-lg md:text-xl text-dark/80 font-semibold">
             언제든지 편하게 연락주세요
           </p>
         </div>
       </section>
 
       {/* Form Section */}
-      <section className="pb-24 px-6">
+      <section className="bg-white py-24 px-6">
         <div className="max-w-2xl mx-auto">
           {/* Tabs */}
           <div className="bg-white rounded-3xl p-2 shadow-lg mb-8 inline-flex gap-2 w-full">
@@ -138,7 +131,7 @@ export default function ContactPage() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-gray-900 text-white py-5 rounded-2xl font-bold text-xl hover:bg-gray-800 hover:scale-[1.02] transition-all duration-300 shadow-lg"
+                className="w-full bg-brand text-black py-5 rounded-2xl font-bold text-xl hover:bg-brand-600 hover:scale-[1.02] transition-all duration-300 shadow-lg"
               >
                 보내기
               </button>
