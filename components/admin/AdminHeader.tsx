@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 
@@ -24,8 +25,15 @@ export default function AdminHeader() {
         <span className="text-sm text-gray-600">{user?.email}</span>
         <button
           onClick={handleLogout}
-          className="px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+          className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
         >
+          <Image
+            src="/icons/로그아웃.png"
+            alt="로그아웃"
+            width={16}
+            height={16}
+            className="w-4 h-4 object-contain"
+          />
           로그아웃
         </button>
       </div>

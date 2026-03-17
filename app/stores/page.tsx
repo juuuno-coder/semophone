@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { stores, type Store } from '@/data/stores';
 import { calculateDistance, isCapitalArea } from '@/lib/distance';
@@ -167,9 +168,10 @@ export default function StoresPage() {
               </p>
               <button
                 onClick={getMyLocation}
-                className="relative bg-gradient-to-r from-[#F2C811] to-[#D4AD00] text-black px-10 md:px-14 py-4 md:py-5 rounded-full text-xl font-black shadow-[0_8px_30px_rgba(242,200,17,0.5)] hover:shadow-[0_12px_40px_rgba(242,200,17,0.7)] hover:-translate-y-1 hover:scale-105 transition-all duration-300 animate-pulse"
+                className="relative inline-flex items-center gap-2 bg-gradient-to-r from-[#F2C811] to-[#D4AD00] text-black px-10 md:px-14 py-4 md:py-5 rounded-full text-xl font-black shadow-[0_8px_30px_rgba(242,200,17,0.5)] hover:shadow-[0_12px_40px_rgba(242,200,17,0.7)] hover:-translate-y-1 hover:scale-105 transition-all duration-300 animate-pulse"
               >
-                📍 내 위치에서 찾기
+                <Image src="/icons/지도핀2.png" alt="" width={24} height={24} className="w-6 h-6 object-contain" />
+                내 위치에서 찾기
               </button>
               <p className="text-xs text-gray-500 mt-4">
                 위치 정보는 가까운 매장 찾기에만 사용되며 저장되지 않습니다
@@ -274,6 +276,7 @@ export default function StoresPage() {
                               rel="noopener noreferrer"
                               className="flex items-center justify-center gap-2 px-4 py-3 bg-[#03C75A] text-white rounded-xl font-bold hover:bg-[#02b350] hover:shadow-lg hover:-translate-y-0.5 transition-all"
                             >
+                              <Image src="/icons/나침반.png" alt="" width={18} height={18} className="w-[18px] h-[18px] object-contain brightness-0 invert" />
                               길찾기
                             </a>
                           </div>
@@ -303,9 +306,10 @@ export default function StoresPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <button
                   onClick={getMyLocation}
-                  className="bg-brand text-black px-6 py-3 rounded-full font-bold shadow-brand hover:bg-primary-hover hover:shadow-brand-hover hover:-translate-y-0.5 hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 bg-brand text-black px-6 py-3 rounded-full font-bold shadow-brand hover:bg-primary-hover hover:shadow-brand-hover hover:-translate-y-0.5 hover:scale-105 transition-all duration-300"
                 >
-                  🔄 다시 시도
+                  <Image src="/icons/다시시도.png" alt="" width={20} height={20} className="w-5 h-5 object-contain" />
+                  다시 시도
                 </button>
                 <button
                   onClick={() => setLocationState('initial')}
@@ -341,7 +345,10 @@ export default function StoresPage() {
                     transition={{ type: 'spring', damping: 25, stiffness: 400 }}
                   />
                 )}
-                <span className="relative z-10">🗺️ 지도</span>
+                <span className="relative z-10 flex items-center gap-2">
+                  <Image src="/icons/빈지도 1.png" alt="" width={20} height={20} className="w-5 h-5 object-contain" />
+                  지도
+                </span>
               </motion.button>
               <motion.button
                 onClick={() => {
@@ -361,7 +368,10 @@ export default function StoresPage() {
                     transition={{ type: 'spring', damping: 25, stiffness: 400 }}
                   />
                 )}
-                <span className="relative z-10">📋 리스트</span>
+                <span className="relative z-10 flex items-center gap-2">
+                  <Image src="/icons/목록.png" alt="" width={20} height={20} className="w-5 h-5 object-contain" />
+                  리스트
+                </span>
               </motion.button>
             </div>
 

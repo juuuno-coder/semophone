@@ -1,13 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
-  { name: '대시보드', href: '/admin', icon: '📊' },
-  { name: '혜택 관리', href: '/admin/benefits', icon: '💎' },
-  { name: '매장 관리', href: '/admin/stores', icon: '🏪' },
-  { name: 'OG 설정', href: '/admin/og-settings', icon: '🔍' },
+  { name: '대시보드', href: '/admin', icon: '/icons/대시보드.png' },
+  { name: '혜택 관리', href: '/admin/benefits', icon: '/icons/혜택3.png' },
+  { name: '매장 관리', href: '/admin/stores', icon: '/icons/상점1.png' },
+  { name: 'OG 설정', href: '/admin/og-settings', icon: '/icons/설정.png' },
 ];
 
 export default function AdminSidebar() {
@@ -30,7 +31,15 @@ export default function AdminSidebar() {
                 isActive ? 'bg-brand text-dark font-bold' : 'text-gray-300 hover:bg-gray-800'
               }`}
             >
-              <span className="text-xl">{item.icon}</span>
+              <div className="w-5 h-5 flex items-center justify-center">
+                <Image
+                  src={item.icon}
+                  alt={item.name}
+                  width={20}
+                  height={20}
+                  className={`w-5 h-5 object-contain ${isActive ? 'brightness-0' : 'brightness-0 invert'}`}
+                />
+              </div>
               <span>{item.name}</span>
             </Link>
           );
