@@ -73,7 +73,7 @@ export default function Home() {
       <Header />
 
       {/* 본문 - stacking context 격리 */}
-      <main style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
+      <main id="main-content" style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
         {/* 미니멀 히어로 */}
         <div ref={heroRef}>
           <MinimalHero />

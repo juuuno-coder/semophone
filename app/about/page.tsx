@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
+      <main id="main-content" style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
         {/* Hero */}
         <section
           className="relative h-[40vh] min-h-[320px] max-h-[480px] overflow-hidden mt-[56px] md:mt-[72px]"

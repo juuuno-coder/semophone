@@ -38,6 +38,15 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      {/* Skip to content 링크 (접근성) */}
+      <a
+        href="#main-content"
+        className="skip-to-content"
+        aria-label="본문으로 바로가기"
+      >
+        본문으로 바로가기
+      </a>
+
       <PageTransition>{children}</PageTransition>
       {/* app 도메인에서만 MobileNav 표시 */}
       {isAppDomain && <MobileNav />}

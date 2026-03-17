@@ -7,11 +7,60 @@ import Footer from '@/components/Footer';
 
 export default function ContactPage() {
   const [activeTab, setActiveTab] = useState<'general' | 'partnership'>('general');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    category: '',
+    message: '',
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      // TODO: 실제 API 연동 시 Firestore 또는 이메일 발송 구현
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      console.log('문의 내용:', {
+        ...formData,
+        type: activeTab,
+        timestamp: new Date().toISOString(),
+      });
+
+      setSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        category: '',
+        message: '',
+      });
+
+      // 3초 후 성공 메시지 자동 닫기
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (error) {
+      console.error('문의 제출 오류:', error);
+      alert('문의 제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
       <Header />
-      <main style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
+      <main id="main-content" style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
       {/* Hero Section */}
       <section
         className="relative h-[40vh] min-h-[320px] max-h-[480px] overflow-hidden mt-[56px] md:mt-[72px]"
@@ -54,63 +103,101 @@ export default function ContactPage() {
             </button>
           </div>
 
+          {/* 성공 메시지 */}
+          {submitted && (
+            <div className="mb-6 bg-green-50 border-2 border-green-500 rounded-2xl p-6 flex items-center gap-4 animate-in fade-in slide-in-from-top-4 duration-300">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-bold text-green-900 text-lg">문의가 성공적으로 접수되었습니다!</p>
+                <p className="text-sm text-green-700 mt-1">담당자가 확인 후 빠르게 연락드리겠습니다.</p>
+              </div>
+            </div>
+          )}
+
           {/* Form Card */}
           <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-            <form className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
               {/* Name */}
               <div>
                 <label className="block text-lg font-bold text-gray-900 mb-3">
-                  이름
+                  이름 *
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand transition-colors text-base bg-gray-50 focus:bg-white"
                   placeholder="이름을 입력해주세요"
+                  required
+                  disabled={submitting}
                 />
               </div>
 
               {/* Email */}
               <div>
                 <label className="block text-lg font-bold text-gray-900 mb-3">
-                  이메일
+                  이메일 *
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand transition-colors text-base bg-gray-50 focus:bg-white"
                   placeholder="이메일을 입력해주세요"
+                  required
+                  disabled={submitting}
                 />
               </div>
 
               {/* Phone */}
               <div>
                 <label className="block text-lg font-bold text-gray-900 mb-3">
-                  전화번호
+                  전화번호 *
                 </label>
                 <input
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand transition-colors text-base bg-gray-50 focus:bg-white"
-                  placeholder="전화번호를 입력해주세요"
+                  placeholder="010-1234-5678"
+                  required
+                  disabled={submitting}
                 />
               </div>
 
               {/* Category */}
               <div>
                 <label className="block text-lg font-bold text-gray-900 mb-3">
-                  {activeTab === 'general' ? '문의 분류' : '제휴 유형'}
+                  {activeTab === 'general' ? '문의 분류 *' : '제휴 유형 *'}
                 </label>
-                <select className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand transition-colors text-base bg-gray-50 focus:bg-white">
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand transition-colors text-base bg-gray-50 focus:bg-white"
+                  required
+                  disabled={submitting}
+                >
+                  <option value="">선택해주세요</option>
                   {activeTab === 'general' ? (
                     <>
-                      <option>휴대폰 문의</option>
-                      <option>매장 위치 안내</option>
-                      <option>A/S 문의</option>
-                      <option>기타 문의</option>
+                      <option value="phone">휴대폰 문의</option>
+                      <option value="location">매장 위치 안내</option>
+                      <option value="as">A/S 문의</option>
+                      <option value="other">기타 문의</option>
                     </>
                   ) : (
                     <>
-                      <option>매장 제휴</option>
-                      <option>광고 제휴</option>
-                      <option>기타 제휴</option>
+                      <option value="store">매장 제휴</option>
+                      <option value="ad">광고 제휴</option>
+                      <option value="other">기타 제휴</option>
                     </>
                   )}
                 </select>
@@ -119,21 +206,27 @@ export default function ContactPage() {
               {/* Message */}
               <div>
                 <label className="block text-lg font-bold text-gray-900 mb-3">
-                  문의 내용
+                  문의 내용 *
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand transition-colors resize-none text-base bg-gray-50 focus:bg-white"
                   rows={8}
                   placeholder="문의 내용을 입력해주세요"
+                  required
+                  disabled={submitting}
                 />
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-brand text-black py-5 rounded-2xl font-bold text-xl hover:bg-brand-600 hover:scale-[1.02] transition-all duration-300 shadow-lg"
+                disabled={submitting}
+                className="w-full bg-brand text-black py-5 rounded-2xl font-bold text-xl hover:bg-brand-600 hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                보내기
+                {submitting ? '전송 중...' : '보내기'}
               </button>
             </form>
           </div>
