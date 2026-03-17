@@ -87,17 +87,29 @@ export default function MinimalStats() {
             </p>
 
             {/* 통계 그리드 */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
               {[
                 { number: '150,000+', label: '누적 개통' },
                 { number: '40+', label: '직영 매장' },
                 { number: '4.8★', label: '만족도' },
                 { number: '365일', label: '사후관리' },
               ].map((stat, i) => (
-                <div key={i} className="bg-white rounded-xl p-6 shadow-md">
-                  <div className="text-3xl font-black text-dark mb-2">{stat.number}</div>
-                  <div className="text-sm text-dark/60">{stat.label}</div>
-                </div>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-dark/5"
+                >
+                  <div className="text-4xl md:text-5xl font-black text-dark mb-3 tracking-tight">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm md:text-base font-semibold text-dark/70">
+                    {stat.label}
+                  </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
