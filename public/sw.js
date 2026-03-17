@@ -42,6 +42,11 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // chrome-extension, blob, data URL 등 캐시 불가능한 스킴 무시
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+    return;
+  }
+
   // API 요청은 Network-first (GET만 캐시)
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(

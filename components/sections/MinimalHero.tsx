@@ -48,10 +48,10 @@ export default function MinimalHero() {
               </Link>
 
               <Link
-                href="/benefits"
+                href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-dark border-2 border-dark rounded-full text-lg font-bold hover:bg-dark hover:text-white transition-all"
               >
-                혜택 알아보기
+                문의하기
               </Link>
             </div>
           </motion.div>
