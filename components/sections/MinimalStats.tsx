@@ -39,14 +39,14 @@ export default function MinimalStats() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden">
-              {/* 즉시 전환 - 페이드 제거 */}
+            <div className="relative rounded-2xl overflow-hidden h-[400px] md:h-[500px] flex items-start justify-center">
+              {/* 상단 고정 정렬 - 이미지 높이가 달라도 위치 안 변함 */}
               <Image
                 src={storeImages[currentImageIndex]}
                 alt={`세모폰 매장 ${currentImageIndex + 1}`}
                 width={800}
                 height={600}
-                className="w-full h-auto object-contain"
+                className="w-full h-full object-contain object-top"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority={currentImageIndex === 0}
               />
@@ -94,7 +94,7 @@ export default function MinimalStats() {
                 { number: '4.8★', label: '만족도' },
                 { number: '365일', label: '사후관리' },
               ].map((stat, i) => (
-                <div key={i} className="bg-black/5 backdrop-blur-sm rounded-xl p-6 border border-black/10">
+                <div key={i} className="bg-white rounded-xl p-6 shadow-md">
                   <div className="text-3xl font-black text-dark mb-2">{stat.number}</div>
                   <div className="text-sm text-dark/60">{stat.label}</div>
                 </div>
