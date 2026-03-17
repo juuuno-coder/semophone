@@ -89,24 +89,24 @@ export default function NaverMap({ stores, userLocation, onStoreClick }: NaverMa
               display: flex;
               align-items: center;
               gap: 6px;
-              background: white;
+              background: linear-gradient(135deg, #F2C811 0%, #D4AD00 100%);
               color: black;
               padding: 8px 12px;
               border-radius: 20px;
-              font-size: 12px;
+              font-size: 13px;
               font-weight: bold;
-              box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+              box-shadow: 0 4px 12px rgba(242, 200, 17, 0.4);
               white-space: nowrap;
               cursor: pointer;
-              border: 2px solid #F2C811; /* Keep for inline style */
+              border: 2px solid white;
             ">
               <img
-                src="/images/logo/로고_검정글씨만.png"
+                src="/icons/세모폰 기본.png"
                 alt="세모폰"
-                style="width: 20px; height: 20px; object-fit: contain;"
+                style="width: 24px; height: 24px; object-fit: contain;"
                 onerror="this.style.display='none'"
               />
-              <span>${store.name}</span>
+              <span style="text-shadow: 0 1px 2px rgba(255,255,255,0.3);">${store.name}</span>
             </div>
           `,
           anchor: new naver.maps.Point(60, 30),

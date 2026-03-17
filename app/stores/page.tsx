@@ -197,20 +197,28 @@ export default function StoresPage() {
           {/* Step 3: Success - 결과 표시 */}
           {locationState === 'success' && (
             <div>
-              <div className="mb-6">
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                  ✅ 내 주변 가까운 매장을 찾았어요!
-                </h2>
-                <p className="text-sm md:text-base text-gray-600">
-                  위치 정보를 기반으로 가까운 매장을 표시합니다
-                </p>
+              <div className="mb-6 flex items-start gap-3">
+                <div className="w-8 h-8 flex-shrink-0">
+                  <Image src="/icons/ok.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                    내 주변 가까운 매장을 찾았어요!
+                  </h2>
+                  <p className="text-sm md:text-base text-gray-600">
+                    위치 정보를 기반으로 가까운 매장을 표시합니다
+                  </p>
+                </div>
               </div>
 
               {/* 가까운 매장 3개 */}
               {nearestStores.length > 0 && (
                 <div>
-                  <div className="mb-6">
-                    <h3 className="text-xl md:text-2xl font-black text-gray-900">🏆 가장 가까운 매장</h3>
+                  <div className="mb-6 flex items-center gap-3">
+                    <div className="w-8 h-8">
+                      <Image src="/icons/선물.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-black text-gray-900">가장 가까운 매장</h3>
                   </div>
 
                   <div className="space-y-4">
