@@ -1,7 +1,7 @@
-import { initializeApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
+import { initializeApp, getApps, FirebaseApp } from 'firebase/app';
+import { getAuth, Auth } from 'firebase/auth';
+import { getFirestore, Firestore } from 'firebase/firestore';
+import { getStorage, FirebaseStorage } from 'firebase/storage';
 import { getAnalytics, Analytics } from 'firebase/analytics';
 
 const firebaseConfig = {
@@ -14,12 +14,39 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-// Firebase 앱 초기화 (중복 방지)
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Firebase 앱 초기화 (API 키가 있을 때만)
+let app: FirebaseApp | undefined;
+let auth: Auth | undefined;
+let db: Firestore | undefined;
+let storage: FirebaseStorage | undefined;
+let analytics: Analytics | null = null;
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+// 클라이언트 사이드에서만 초기화
+if (typeof window !== 'undefined' && firebaseConfig.apiKey) {
+  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+  auth = getAuth(app);
+  db = getFirestore(app);
+  storage = getStorage(app);
+  analytics = getAnalytics(app);
+}
 
-// Analytics는 클라이언트 사이드에서만 사용
-export const analytics: Analytics | null = typeof window !== 'undefined' ? getAnalytics(app) : null;
+// 타입 안전성을 위한 export (사용 시 체크 필요)
+export { auth, db, storage, analytics };
+
+// Helper 함수들
+export const isFirebaseInitialized = () => !!app;
+
+export const getAuthInstance = () => {
+  if (!auth) throw new Error('Firebase Auth is not initialized');
+  return auth;
+};
+
+export const getDbInstance = () => {
+  if (!db) throw new Error('Firebase Firestore is not initialized');
+  return db;
+};
+
+export const getStorageInstance = () => {
+  if (!storage) throw new Error('Firebase Storage is not initialized');
+  return storage;
+};
