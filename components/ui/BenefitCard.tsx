@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { BentoCard, BentoCardContent } from './BentoCard';
+import Image from 'next/image';
 
 interface BenefitCardProps {
   icon: string;
@@ -25,7 +26,17 @@ export default function BenefitCard({ icon, title, description, className, delay
           className="w-full"
         >
           <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-brand/10 flex items-center justify-center text-2xl md:text-3xl mb-3">
-            {icon}
+            {icon.startsWith('/') ? (
+              <Image
+                src={icon}
+                alt={title}
+                width={40}
+                height={40}
+                className="w-8 h-8 md:w-10 md:h-10 object-contain"
+              />
+            ) : (
+              icon
+            )}
           </div>
           <h3 className="text-base md:text-lg font-bold text-gray-900 leading-snug mb-1">
             {title}

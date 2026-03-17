@@ -2,32 +2,32 @@ import { JobOpening, Benefit } from '@/types/content';
 
 export const benefits: Benefit[] = [
   {
-    icon: "🏥",
+    icon: "/icons/보안.png",
     title: "4대 보험 완비",
     description: "국민연금, 건강보험, 고용보험, 산재보험"
   },
   {
-    icon: "🕐",
+    icon: "/icons/시계.png",
     title: "유연 근무제",
     description: "출퇴근 시간 자율 조정 가능"
   },
   {
-    icon: "🍱",
+    icon: "/icons/카드.png",
     title: "점심 식대 지원",
     description: "월 15만원 식대 지원"
   },
   {
-    icon: "🏖️",
+    icon: "/icons/캘린더.png",
     title: "연차/휴가",
     description: "법정 연차 + 리프레시 휴가"
   },
   {
-    icon: "📚",
+    icon: "/icons/연필, 작성.png",
     title: "교육비 지원",
     description: "직무 관련 교육 100% 지원"
   },
   {
-    icon: "💰",
+    icon: "/icons/태그, 할인.png",
     title: "성과급",
     description: "분기별 실적 기반 인센티브"
   }
@@ -98,17 +98,17 @@ export const jobOpenings: JobOpening[] = [
 
 export const cultureValues = [
   {
-    icon: "💬",
+    icon: "/icons/채팅, 고객센터.png",
     title: "수평적 소통",
     description: "직급에 관계없이 자유로운 의견 공유"
   },
   {
-    icon: "⚖️",
+    icon: "/icons/ok.png",
     title: "워라밸 보장",
     description: "정시 퇴근 문화, 주말/공휴일 휴무"
   },
   {
-    icon: "🎯",
+    icon: "/icons/차트.png",
     title: "성과 중심",
     description: "능력과 성과로 평가하는 공정한 시스템"
   }
