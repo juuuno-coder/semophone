@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClientLayout } from "./client-layout";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "세모폰 - 세상의 모든 휴대폰",
@@ -44,7 +45,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased overflow-x-hidden">
-        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
