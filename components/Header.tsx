@@ -128,10 +128,10 @@ export default function Header() {
           </Link>
           <nav className="nav-desktop" style={{ gap: '2rem' }}>
             <Link
-              href="/"
+              href="/about"
               className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors"
             >
-              세모폰
+              소개
             </Link>
             <Link
               href="/history"
@@ -144,6 +144,12 @@ export default function Header() {
               className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors"
             >
               채용정보
+            </Link>
+            <Link
+              href="/partnership"
+              className="text-base font-semibold text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              협업정보
             </Link>
             <Link
               href="/stores"
@@ -222,11 +228,11 @@ export default function Header() {
                 {/* 메인 메뉴 */}
                 <div className="flex flex-col gap-2">
                   <MenuItem
-                    href="/"
+                    href="/about"
                     icon={
-                      <Image src="/icons/건물.png" alt="세모폰" width={20} height={20} className="w-5 h-5 object-contain" />
+                      <Image src="/icons/건물.png" alt="소개" width={20} height={20} className="w-5 h-5 object-contain" />
                     }
-                    label="세모폰"
+                    label="소개"
                     onClick={() => setMobileMenuOpen(false)}
                   />
                   <MenuItem
@@ -243,6 +249,14 @@ export default function Header() {
                       <Image src="/icons/사람들2.png" alt="채용정보" width={20} height={20} className="w-5 h-5 object-contain" />
                     }
                     label="채용정보"
+                    onClick={() => setMobileMenuOpen(false)}
+                  />
+                  <MenuItem
+                    href="/partnership"
+                    icon={
+                      <Image src="/icons/악수.png" alt="협업정보" width={20} height={20} className="w-5 h-5 object-contain" />
+                    }
+                    label="협업정보"
                     onClick={() => setMobileMenuOpen(false)}
                   />
                   <MenuItem

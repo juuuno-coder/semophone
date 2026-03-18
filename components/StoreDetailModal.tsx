@@ -210,6 +210,27 @@ export default function StoreDetailModal({ store, isOpen, onClose }: StoreDetail
               </div>
             </div>
 
+            {/* 랜드마크 정보 */}
+            {store.landmark && (
+              <div className="flex items-start gap-3 bg-brand/5 p-4 rounded-xl border-l-4 border-brand mb-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-white flex items-center justify-center">
+                  <Image
+                    src="/icons/지도핀.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 object-contain"
+                  />
+                </div>
+                <div className="flex-1 pt-0.5">
+                  <div className="text-xs font-semibold text-brand mb-1">주변 랜드마크</div>
+                  <div className="text-sm font-medium text-gray-900 leading-relaxed">
+                    {store.landmark}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* 액션 버튼 */}
             <div className="space-y-2 pt-4 pb-safe-bottom border-t border-gray-100">
               {/* 전화하기 */}

@@ -1,13 +1,13 @@
+'use client';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhySection from '@/components/sections/WhySection';
 import TrustSection from '@/components/sections/TrustSection';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
-export const metadata = {
-  title: '회사 소개 | 세모폰',
-  description: '세상의 모든 휴대폰 가격을 내리다. 세모폰의 미션과 핵심 가치를 소개합니다.'
-};
+const NaverMap = dynamic(() => import('@/components/NaverMap'), { ssr: false });
 
 export default function AboutPage() {
   return (
@@ -50,9 +50,119 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* CI 갤러리 */}
+        <section className="bg-gray-50 py-24 px-3">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                세모폰 CI
+              </h2>
+              <p className="text-gray-600">
+                다양한 환경에서 사용할 수 있는 세모폰 로고를 소개합니다
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { src: '/images/logo/기본로고.png', name: '기본 로고', bgColor: '#FFFFFF' },
+                { src: '/images/logo/기본로고_흰글씨.png', name: '반전 로고', bgColor: '#1A1A1A' },
+                { src: '/images/logo/로고_가로나열형.png', name: '가로 나열형', bgColor: '#FFFFFF' },
+                { src: '/images/logo/로고_가로단축형.png', name: '가로 단축형', bgColor: '#FFFFFF' },
+                { src: '/images/logo/로고_검정글씨만.png', name: '검정 글씨', bgColor: '#FFFFFF' },
+                { src: '/images/logo/로고_노랑글씨_검정배경.png', name: '노랑 글씨 (검정 배경)', bgColor: '#000000' },
+                { src: '/images/logo/로고_노랑글씨나열.png', name: '노랑 나열', bgColor: '#000000' },
+                { src: '/images/logo/로고_노랑글씨만.png', name: '노랑 글씨', bgColor: '#000000' },
+                { src: '/images/logo/로고단순_가로나열형.png', name: '단순 가로 나열', bgColor: '#FFFFFF' },
+                { src: '/images/logo/로고단순_가로단축형.png', name: '단순 가로 단축', bgColor: '#FFFFFF' },
+                { src: '/images/logo/검정글씨.png', name: '검정 글씨 단독', bgColor: '#FFFFFF' },
+                { src: '/images/logo/검정글씨_노란배경.png', name: '검정 글씨 (노랑 배경)', bgColor: '#FEE500' },
+              ].map((logo, idx) => (
+                <div key={idx} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                  <div
+                    className="aspect-video flex items-center justify-center mb-4 rounded-xl"
+                    style={{ backgroundColor: logo.bgColor }}
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={200}
+                      height={80}
+                      className="max-w-full max-h-full object-contain p-4"
+                    />
+                  </div>
+                  <p className="text-sm font-bold text-gray-700 text-center">
+                    {logo.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 기존 섹션 재사용 */}
         <WhySection />
         <TrustSection />
+
+        {/* 본사 약도 */}
+        <section className="bg-white py-24 px-3">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                찾아오시는 길
+              </h2>
+              <p className="text-gray-600 mb-2">
+                세모폰 본사로 오시는 길을 안내합니다
+              </p>
+              <div className="text-base text-gray-800 font-semibold mt-6">
+                <p>서울특별시 강남구 테헤란로 123 세모폰빌딩 5층</p>
+                <p className="text-gray-600 text-sm mt-2">
+                  📞 02-1234-5678 | 📧 info@semophone.co.kr
+                </p>
+              </div>
+            </div>
+
+            {/* 지도 */}
+            <div className="h-[500px] rounded-2xl overflow-hidden shadow-xl mb-12">
+              <NaverMap
+                stores={[{
+                  id: 0,
+                  name: '세모폰 본사',
+                  address: '서울특별시 강남구 테헤란로 123',
+                  phone: '02-1234-5678',
+                  region: '서울',
+                  lat: 37.5012,
+                  lng: 127.0396,
+                }]}
+                userLocation={null}
+              />
+            </div>
+
+            {/* 교통편 안내 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <div className="text-4xl mb-3">🚇</div>
+                <h3 className="font-bold text-lg mb-2 text-gray-900">지하철</h3>
+                <p className="text-sm text-gray-600">
+                  2호선 강남역 3번출구<br />도보 5분
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <div className="text-4xl mb-3">🚌</div>
+                <h3 className="font-bold text-lg mb-2 text-gray-900">버스</h3>
+                <p className="text-sm text-gray-600">
+                  간선: 146, 740<br />지선: 3012, 4412
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <div className="text-4xl mb-3">🚗</div>
+                <h3 className="font-bold text-lg mb-2 text-gray-900">주차</h3>
+                <p className="text-sm text-gray-600">
+                  건물 지하 1-3층<br />방문객 2시간 무료
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

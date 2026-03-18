@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 import StoreDetailModal from '@/components/StoreDetailModal';
 import { SwipeableStoreCard } from '@/components/ui/SwipeableStoreCard';
 import { PullToRefresh } from '@/components/ui/PullToRefresh';
+import { RegionAccordion } from '@/components/RegionAccordion';
 import { haptics } from '@/lib/haptics';
 
 const NaverMap = dynamic(() => import('@/components/NaverMap'), { ssr: false });
@@ -24,6 +25,8 @@ export default function StoresPage() {
   const [filteredStores, setFilteredStores] = useState<StoreWithDistance[]>(stores);
   const [nearestStores, setNearestStores] = useState<StoreWithDistance[]>([]);
   const [selectedRegion, setSelectedRegion] = useState<string>('전체');
+  const [selectedSubRegion, setSelectedSubRegion] = useState<string>('전체');
+  const [expandedRegion, setExpandedRegion] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [locationState, setLocationState] = useState<'initial' | 'loading' | 'success' | 'error'>('initial');
   const [locationError, setLocationError] = useState<string>('');
@@ -43,14 +46,22 @@ export default function StoresPage() {
     setTimeout(() => setSelectedStore(null), 300);
   }, []);
 
-  // 지역 필터링 (useMemo로 최적화)
+  // 지역 필터링 (2단계: region + subRegion)
   useEffect(() => {
     if (selectedRegion === '전체') {
       setFilteredStores(allStores);
-    } else {
+    } else if (selectedSubRegion === '전체') {
+      // 대분류만 선택 (예: 서울 전체)
       setFilteredStores(allStores.filter((store) => store.region === selectedRegion));
+    } else {
+      // 소분류 선택 (예: 서울 동부)
+      setFilteredStores(
+        allStores.filter(
+          (store) => store.region === selectedRegion && store.subRegion === selectedSubRegion
+        )
+      );
     }
-  }, [selectedRegion, allStores]);
+  }, [selectedRegion, selectedSubRegion, allStores]);
 
   // 내 위치 가져오기
   const getMyLocation = useCallback(() => {
@@ -483,43 +494,88 @@ export default function StoresPage() {
               </div>
             </div>
 
-            {/* 지역 필터 - 배경 추가 */}
+            {/* 지역 필터 - 2단계 Accordion */}
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Image src="/icons/지도핀.png" alt="" width={24} height={24} className="w-6 h-6 object-contain" />
                 <h3 className="text-lg font-bold text-gray-900">지역 선택</h3>
               </div>
-              <div className="flex flex-wrap gap-3">
-                {regions.map((region) => (
-                  <motion.button
-                    key={region}
-                    onClick={() => {
-                      haptics.light();
-                      setSelectedRegion(region);
-                    }}
-                    className={`relative px-6 py-3 rounded-xl font-bold transition-all ${
-                      selectedRegion === region
-                        ? 'text-black shadow-lg'
-                        : 'text-gray-600 hover:text-gray-900 bg-white border-2 border-gray-200 hover:border-gray-300'
-                    }`}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {selectedRegion === region && (
-                      <motion.div
-                        layoutId="activeRegionChip"
-                        className="absolute inset-0 bg-brand rounded-xl shadow-brand"
-                        transition={{ type: 'spring', damping: 25, stiffness: 400 }}
-                      />
-                    )}
-                    <span className="relative z-10 flex items-center gap-2">
-                      {selectedRegion === region && (
-                        <span className="text-lg">📍</span>
-                      )}
-                      <span className="text-base">{region}</span>
-                    </span>
-                  </motion.button>
-                ))}
+              <div className="space-y-3">
+                {/* 전체 버튼 */}
+                <motion.button
+                  onClick={() => {
+                    haptics.light();
+                    setSelectedRegion('전체');
+                    setSelectedSubRegion('전체');
+                    setExpandedRegion(null);
+                  }}
+                  className={`w-full px-6 py-3 rounded-xl font-semibold transition-all ${
+                    selectedRegion === '전체'
+                      ? 'bg-brand text-black shadow-lg'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200'
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    {selectedRegion === '전체' && <span>📍</span>}
+                    <span>전체</span>
+                  </div>
+                </motion.button>
+
+                {/* 서울 Accordion */}
+                <RegionAccordion
+                  region="서울"
+                  subRegions={['전체', '동부', '서부']}
+                  selectedRegion={selectedRegion}
+                  selectedSubRegion={selectedSubRegion}
+                  expandedRegion={expandedRegion}
+                  onRegionClick={(region) => {
+                    haptics.light();
+                    setSelectedRegion(region);
+                  }}
+                  onSubRegionClick={(subRegion) => {
+                    haptics.light();
+                    setSelectedSubRegion(subRegion);
+                  }}
+                  onToggle={setExpandedRegion}
+                />
+
+                {/* 경기 Accordion */}
+                <RegionAccordion
+                  region="경기"
+                  subRegions={['전체', '부천', '성남/분당', '기타']}
+                  selectedRegion={selectedRegion}
+                  selectedSubRegion={selectedSubRegion}
+                  expandedRegion={expandedRegion}
+                  onRegionClick={(region) => {
+                    haptics.light();
+                    setSelectedRegion(region);
+                  }}
+                  onSubRegionClick={(subRegion) => {
+                    haptics.light();
+                    setSelectedSubRegion(subRegion);
+                  }}
+                  onToggle={setExpandedRegion}
+                />
+
+                {/* 인천 Accordion */}
+                <RegionAccordion
+                  region="인천"
+                  subRegions={['전체', '남부', '북부', '송도']}
+                  selectedRegion={selectedRegion}
+                  selectedSubRegion={selectedSubRegion}
+                  expandedRegion={expandedRegion}
+                  onRegionClick={(region) => {
+                    haptics.light();
+                    setSelectedRegion(region);
+                  }}
+                  onSubRegionClick={(subRegion) => {
+                    haptics.light();
+                    setSelectedSubRegion(subRegion);
+                  }}
+                  onToggle={setExpandedRegion}
+                />
               </div>
             </div>
           </div>
@@ -535,6 +591,7 @@ export default function StoresPage() {
                 onStoreClick={(store) => {
                   openStoreDetail(store);
                 }}
+                focusRegion={selectedSubRegion !== '전체'}
               />
             </div>
           </div>

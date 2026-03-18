@@ -7,9 +7,10 @@ interface NaverMapProps {
   stores: Store[];
   userLocation: { lat: number; lng: number } | null;
   onStoreClick?: (store: Store) => void;
+  focusRegion?: boolean; // 세분화 지역 선택 시 해당 지역만 집중
 }
 
-export default function NaverMap({ stores, userLocation, onStoreClick }: NaverMapProps) {
+export default function NaverMap({ stores, userLocation, onStoreClick, focusRegion = false }: NaverMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<any>(null);
   const [markers, setMarkers] = useState<any[]>([]);
@@ -220,12 +221,18 @@ export default function NaverMap({ stores, userLocation, onStoreClick }: NaverMa
       bounds.extend(new naver.maps.LatLng(store.lat, store.lng));
     });
 
-    if (userLocation) {
+    // focusRegion이 false일 때만 사용자 위치를 bounds에 포함
+    if (userLocation && !focusRegion) {
       bounds.extend(new naver.maps.LatLng(userLocation.lat, userLocation.lng));
     }
 
-    map.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
-  }, [map, stores, userLocation]);
+    // focusRegion이 true일 때는 padding을 줄여서 더 집중
+    const padding = focusRegion
+      ? { top: 30, right: 30, bottom: 30, left: 30 }
+      : { top: 50, right: 50, bottom: 50, left: 50 };
+
+    map.fitBounds(bounds, padding);
+  }, [map, stores, userLocation, focusRegion]);
 
   // 지도 클릭 시 모든 InfoWindow 닫기
   useEffect(() => {

@@ -113,3 +113,49 @@ export const cultureValues = [
     description: "능력과 성과로 평가하는 공정한 시스템"
   }
 ];
+
+export const coreValues = [
+  {
+    icon: "/icons/전구.png",
+    title: "혁신 Innovation",
+    description: "기존의 틀을 깨고 새로운 가치를 창출합니다"
+  },
+  {
+    icon: "/icons/사람들2.png",
+    title: "존중 Respect",
+    description: "모든 구성원의 의견을 경청하고 존중합니다"
+  },
+  {
+    icon: "/icons/ok.png",
+    title: "투명성 Transparency",
+    description: "모든 프로세스를 투명하게 공개합니다"
+  },
+  {
+    icon: "/icons/차트.png",
+    title: "성장 Growth",
+    description: "개인과 조직의 지속적인 성장을 추구합니다"
+  }
+];
+
+export const hiringProcess = [
+  {
+    step: "01",
+    title: "지원서 접수",
+    description: "온라인 지원서 제출"
+  },
+  {
+    step: "02",
+    title: "서류 전형",
+    description: "지원서 검토 후 통보"
+  },
+  {
+    step: "03",
+    title: "실무 면접",
+    description: "직무 역량 평가"
+  },
+  {
+    step: "04",
+    title: "최종 합격",
+    description: "처우 협의 및 입사"
+  }
+];
