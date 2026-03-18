@@ -165,6 +165,7 @@ export default function AboutPage() {
                   address: '서울특별시 강남구 테헤란로 123',
                   phone: '02-1234-5678',
                   region: '서울',
+                  subRegion: '동부',
                   lat: 37.5012,
                   lng: 127.0396,
                 }]}
