@@ -82,9 +82,33 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-200">
-          <p className="text-xs text-gray-400">
-            © 2026 세모폰. All rights reserved.
-          </p>
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <p className="text-xs text-gray-400">
+              © 2026 세모폰. All rights reserved. <span className="ml-2">v2.0.0</span>
+            </p>
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  // 모든 캐시 초기화
+                  localStorage.clear();
+                  sessionStorage.clear();
+
+                  // Service Worker 제거 (있는 경우)
+                  if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                      registrations.forEach(registration => registration.unregister());
+                    });
+                  }
+
+                  // 강제 새로고침 (캐시 무시)
+                  window.location.reload();
+                }
+              }}
+              className="text-xs text-gray-500 hover:text-brand underline transition-colors"
+            >
+              🔄 캐시 초기화
+            </button>
+          </div>
         </div>
       </div>
     </footer>

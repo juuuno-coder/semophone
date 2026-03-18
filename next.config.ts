@@ -15,6 +15,28 @@ const nextConfig: NextConfig = {
   experimental: {
     // Turbopack은 기본적으로 빠른 리프레시 제공
   },
+  // 캐시 무효화 헤더 (모바일 캐시 방지)
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, max-age=0',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
