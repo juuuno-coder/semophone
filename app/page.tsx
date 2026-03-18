@@ -5,15 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import CinematicHero from '@/components/sections/CinematicHero';
-import VisionStatement from '@/components/sections/VisionStatement';
-import NumbersSpeak from '@/components/sections/NumbersSpeak';
-import StoreNetwork from '@/components/sections/StoreNetwork';
-import CustomerExperience from '@/components/sections/CustomerExperience';
-import TeamCulture from '@/components/sections/TeamCulture';
-import GrowthTimeline from '@/components/sections/GrowthTimeline';
-import TrustSignals from '@/components/sections/TrustSignals';
-import FinalCTA from '@/components/sections/FinalCTA';
+import SimplifiedHero from '@/components/sections/SimplifiedHero';
+import MinimalStats from '@/components/sections/MinimalStats';
+import TrustMinimal from '@/components/sections/TrustMinimal';
+import MinimalCTA from '@/components/sections/MinimalCTA';
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
@@ -77,34 +72,19 @@ export default function Home() {
 
       {/* 본문 - stacking context 격리 */}
       <main id="main-content" style={{ isolation: 'isolate', position: 'relative', zIndex: 0 }}>
-        {/* 1. 전체 화면 Cinematic Hero */}
+        {/* 히어로 섹션 */}
         <div ref={heroRef}>
-          <CinematicHero />
+          <SimplifiedHero />
         </div>
 
-        {/* 2. 비전 선언 */}
-        <VisionStatement />
+        {/* 통계 섹션 */}
+        <MinimalStats />
 
-        {/* 3. 숫자로 증명 (Count-up 애니메이션) */}
-        <NumbersSpeak />
+        {/* 신뢰 섹션 */}
+        <TrustMinimal />
 
-        {/* 4. 전국 매장 네트워크 (Horizontal Scroll) */}
-        <StoreNetwork />
-
-        {/* 5. 고객 경험 (Split Screen) */}
-        <CustomerExperience />
-
-        {/* 6. 팀과 문화 (Parallax) */}
-        <TeamCulture />
-
-        {/* 7. 성장 여정 (Timeline) */}
-        <GrowthTimeline />
-
-        {/* 8. 신뢰 신호 (고객 후기) */}
-        <TrustSignals />
-
-        {/* 9. 최종 CTA (Parallax Background) */}
-        <FinalCTA />
+        {/* 최종 CTA */}
+        <MinimalCTA />
       </main>
 
       {/* Footer */}
