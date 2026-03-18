@@ -4,20 +4,28 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function PartnershipPage() {
   const [formData, setFormData] = useState({
-    company: '',
     name: '',
-    email: '',
     phone: '',
-    category: '',
+    region: '',
+    subject: '',
     message: '',
+    privacyAgreed: false,
+    smsAgreed: false,
   });
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.privacyAgreed) {
+      alert('개인정보 수집 및 이용에 동의해주세요.');
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -33,7 +41,15 @@ export default function PartnershipPage() {
       const result = await response.json();
       if (result.success) {
         alert('문의가 접수되었습니다. 빠른 시일 내 연락드리겠습니다.');
-        setFormData({ company: '', name: '', email: '', phone: '', category: '', message: '' });
+        setFormData({
+          name: '',
+          phone: '',
+          region: '',
+          subject: '',
+          message: '',
+          privacyAgreed: false,
+          smsAgreed: false,
+        });
       } else {
         alert('문의 접수에 실패했습니다. 다시 시도해주세요.');
       }
@@ -54,17 +70,17 @@ export default function PartnershipPage() {
           style={{ background: 'linear-gradient(135deg, #FEE500 0%, #FDD835 50%, #FEE500 100%)' }}
         >
           <div className="relative h-full flex flex-col items-center justify-center px-6 text-center">
-            <h1 className="text-4xl md:text-5xl font-black text-dark mb-4">협업 문의</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-dark mb-4">창업문의</h1>
             <p className="text-lg md:text-xl text-dark/80 font-semibold">
-              세모폰과 함께 성장하세요
+              파격적인 창업비용면제 / 차별적인 솔루션과 매뉴
             </p>
           </div>
         </section>
 
         {/* 협업 소개 */}
-        <section className="bg-white py-24 px-3">
+        <section className="bg-white py-16 px-3">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-8">
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">
               함께 만드는 미래
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -75,9 +91,9 @@ export default function PartnershipPage() {
         </section>
 
         {/* 협업 분야 */}
-        <section className="bg-gray-50 py-24 px-3">
+        <section className="bg-gray-50 py-16 px-3">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-black text-center mb-16">협업 분야</h2>
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-12">협업 분야</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
@@ -108,115 +124,165 @@ export default function PartnershipPage() {
           </div>
         </section>
 
-        {/* 문의 폼 */}
-        <section className="bg-white py-24 px-6">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-black text-center mb-12">
-              협업 문의하기
-            </h2>
-            <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* 회사명 */}
-                <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">회사명 *</label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand text-gray-900"
-                    required
-                  />
-                </div>
+        {/* 문의 폼 - 좌우 레이아웃 */}
+        <section className="bg-white py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-black text-center mb-16">창업문의</h2>
 
-                {/* 담당자명 */}
-                <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">담당자명 *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand text-gray-900"
-                    required
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+              {/* 왼쪽: 캐릭터 이미지 */}
+              <div className="flex items-center justify-center">
+                <div className="relative w-full max-w-md">
+                  <Image
+                    src="/images/logo/기본로고.png"
+                    alt="세모폰"
+                    width={400}
+                    height={400}
+                    className="w-full h-auto"
                   />
+                  <div className="mt-8 text-center">
+                    <p className="text-2xl font-black text-gray-900 mb-2">
+                      세모폰과 함께<br />성장하세요
+                    </p>
+                    <p className="text-gray-600">
+                      투명하고 정직한 파트너십
+                    </p>
+                  </div>
                 </div>
+              </div>
 
-                {/* 이메일 */}
-                <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">이메일 *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand text-gray-900"
-                    required
-                  />
-                </div>
+              {/* 오른쪽: 폼 */}
+              <div className="bg-white">
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* 이름 */}
+                  <div>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">이름</label>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="성명"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand text-gray-900 placeholder:text-gray-400"
+                      required
+                    />
+                  </div>
 
-                {/* 전화번호 */}
-                <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">전화번호 *</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand text-gray-900"
-                    required
-                  />
-                </div>
+                  {/* 연락처 */}
+                  <div>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">연락처</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="010-1234-5678"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand text-gray-900 placeholder:text-gray-400"
+                      required
+                    />
+                  </div>
 
-                {/* 협업 유형 */}
-                <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">협업 유형 *</label>
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand text-gray-900"
-                    required
+                  {/* 상담지역 */}
+                  <div>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">상담지역</label>
+                    <select
+                      name="region"
+                      value={formData.region}
+                      onChange={(e) => setFormData({ ...formData, region: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand text-gray-900"
+                      required
+                    >
+                      <option value="">선택하세요</option>
+                      <option value="서울">서울</option>
+                      <option value="경기">경기</option>
+                      <option value="인천">인천</option>
+                      <option value="기타">기타 지역</option>
+                    </select>
+                  </div>
+
+                  {/* 제목 */}
+                  <div>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">제목</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      placeholder="제목"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand text-gray-900 placeholder:text-gray-400"
+                      required
+                    />
+                  </div>
+
+                  {/* 내용 */}
+                  <div>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">내용</label>
+                    <textarea
+                      name="message"
+                      rows={6}
+                      placeholder="내용"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand resize-none text-gray-900 placeholder:text-gray-400"
+                      required
+                    />
+                  </div>
+
+                  {/* 개인정보 수집 동의 */}
+                  <div className="flex items-start gap-2 bg-gray-50 p-4 rounded-lg">
+                    <input
+                      type="checkbox"
+                      id="privacyAgreed"
+                      checked={formData.privacyAgreed}
+                      onChange={(e) => setFormData({ ...formData, privacyAgreed: e.target.checked })}
+                      className="mt-1 w-4 h-4"
+                      required
+                    />
+                    <label htmlFor="privacyAgreed" className="text-sm text-gray-700 flex-1">
+                      <span className="font-bold">개인정보 수집 및 이용에 동의</span>
+                      <Link href="/privacy" className="ml-2 text-brand underline">
+                        자세히보기
+                      </Link>
+                    </label>
+                  </div>
+
+                  {/* SMS 수신동의 */}
+                  <div className="flex items-start gap-2">
+                    <input
+                      type="checkbox"
+                      id="smsAgreed"
+                      checked={formData.smsAgreed}
+                      onChange={(e) => setFormData({ ...formData, smsAgreed: e.target.checked })}
+                      className="mt-1 w-4 h-4"
+                    />
+                    <label htmlFor="smsAgreed" className="text-sm text-gray-700">
+                      SMS 수신동의
+                    </label>
+                  </div>
+
+                  {/* 제출 버튼 */}
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full py-4 bg-red-600 text-white rounded-lg font-bold text-lg hover:bg-red-700 transition-all disabled:opacity-50 shadow-lg hover:shadow-xl"
                   >
-                    <option value="">선택해주세요</option>
-                    <option value="store">매장 제휴</option>
-                    <option value="marketing">마케팅 제휴</option>
-                    <option value="tech">기술 협력</option>
-                    <option value="other">기타</option>
-                  </select>
+                    {submitting ? '전송 중...' : '창업문의'}
+                  </button>
+                </form>
+
+                {/* 직접 연락 */}
+                <div className="mt-8 text-center pt-8 border-t border-gray-200">
+                  <p className="text-sm text-gray-600 mb-3">또는 직접 연락주세요</p>
+                  <div className="space-y-2">
+                    <a href="tel:0507-1489-2274" className="block text-lg font-bold text-gray-900 hover:text-brand">
+                      📞 0507-1489-2274
+                    </a>
+                    <a href="mailto:partnership@semophone.co.kr" className="block text-sm text-gray-600 hover:text-brand">
+                      📧 partnership@semophone.co.kr
+                    </a>
+                  </div>
                 </div>
-
-                {/* 협업 내용 */}
-                <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">협업 제안 내용 *</label>
-                  <textarea
-                    name="message"
-                    rows={8}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-brand resize-none text-gray-900"
-                    placeholder="협업하고 싶은 내용을 자세히 작성해주세요"
-                    required
-                  />
-                </div>
-
-                {/* 제출 버튼 */}
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full py-4 bg-brand text-black rounded-2xl font-bold text-lg hover:bg-brand-600 transition-all disabled:opacity-50 shadow-lg hover:shadow-xl hover:-translate-y-1"
-                >
-                  {submitting ? '전송 중...' : '문의 보내기'}
-                </button>
-              </form>
-            </div>
-
-            {/* 직접 연락 */}
-            <div className="mt-12 text-center">
-              <p className="text-gray-600 mb-4">또는 직접 연락주세요</p>
-              <a href="mailto:partnership@semophone.co.kr" className="text-lg font-bold text-brand hover:underline">
-                📧 partnership@semophone.co.kr
-              </a>
+              </div>
             </div>
           </div>
         </section>
