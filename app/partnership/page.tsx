@@ -264,7 +264,7 @@ export default function PartnershipPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full py-4 bg-red-600 text-white rounded-lg font-bold text-lg hover:bg-red-700 transition-all disabled:opacity-50 shadow-lg hover:shadow-xl"
+                    className="w-full py-4 bg-brand text-dark rounded-lg font-bold text-lg hover:scale-105 transition-all disabled:opacity-50 shadow-lg hover:shadow-xl"
                   >
                     {submitting ? '전송 중...' : '창업문의'}
                   </button>

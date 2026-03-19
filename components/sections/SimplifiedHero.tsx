@@ -43,7 +43,8 @@ export default function SimplifiedHero() {
                   src={image}
                   alt="세모폰 매장"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
+                  style={{ transform: 'scale(1.05)' }}
                   priority={index === 0}
                 />
               </div>
@@ -103,7 +104,8 @@ export default function SimplifiedHero() {
                   src={image}
                   alt="세모폰 매장"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
+                  style={{ transform: 'scale(1.05)' }}
                   priority={index === 0}
                 />
               </div>
