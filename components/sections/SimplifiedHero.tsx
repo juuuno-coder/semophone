@@ -149,9 +149,9 @@ export default function SimplifiedHero() {
         </div>
 
         {/* 타이틀 영역 */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-between px-8 py-8 text-center">
+        <div className="relative z-10 h-full flex flex-col items-center px-8 py-8 text-center">
           {/* 상단 타이틀 */}
-          <div className="pt-12">
+          <div className="pt-12 flex-shrink-0">
             <h1 className="text-4xl font-black text-gray-900 mb-4">
               세모폰
             </h1>
@@ -167,8 +167,11 @@ export default function SimplifiedHero() {
             </p>
           </div>
 
+          {/* 중간 여백 */}
+          <div className="flex-grow" />
+
           {/* 하단 버튼 */}
-          <div className="w-full max-w-sm pb-4">
+          <div className="w-full max-w-sm pb-6 mt-8 flex-shrink-0">
             <Link href="/about" className="w-full">
               <button
                 style={{ backgroundColor: '#FEE500' }}
