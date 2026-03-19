@@ -25,7 +25,7 @@ export default function VisionStatement() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.3, ease: 'easeOut' },
+      transition: { duration: 0.3, ease: [0, 0, 0.2, 1] },
     },
   };
 
