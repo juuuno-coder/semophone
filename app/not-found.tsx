@@ -59,19 +59,19 @@ export default function NotFound() {
           <div className="flex flex-wrap gap-3 justify-center">
             <Link
               href="/about"
-              className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-full text-sm font-semibold text-dark transition-all"
+              className="px-4 py-2 bg-dark/20 hover:bg-dark/30 hover:scale-105 rounded-full text-sm font-semibold text-dark transition-all"
             >
               회사소개
             </Link>
             <Link
               href="/careers"
-              className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-full text-sm font-semibold text-dark transition-all"
+              className="px-4 py-2 bg-dark/20 hover:bg-dark/30 hover:scale-105 rounded-full text-sm font-semibold text-dark transition-all"
             >
               채용정보
             </Link>
             <Link
               href="/contact"
-              className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-full text-sm font-semibold text-dark transition-all"
+              className="px-4 py-2 bg-dark/20 hover:bg-dark/30 hover:scale-105 rounded-full text-sm font-semibold text-dark transition-all"
             >
               문의하기
             </Link>

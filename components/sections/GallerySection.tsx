@@ -109,7 +109,7 @@ const GallerySection = forwardRef<HTMLElement>((props, ref) => {
                   className={`h-2 rounded-full transition-all ${
                     index === currentIndex
                       ? 'bg-brand w-6'
-                      : 'bg-white/50 hover:bg-white/75 w-2'
+                      : 'bg-white/50 hover:scale-125 w-2'
                   }`}
                   aria-label={`이미지 ${index + 1}로 이동`}
                 />

@@ -91,8 +91,8 @@ export default function StoreNetwork() {
                   </div>
 
                   {/* Hover 효과 */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <span className="text-white font-bold text-lg">자세히 보기 →</span>
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span className="text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">자세히 보기 →</span>
                   </div>
                 </motion.div>
               </SwiperSlide>
@@ -121,7 +121,8 @@ export default function StoreNetwork() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold text-lg rounded-full hover:bg-white hover:text-dark transition-all"
+              style={{ backgroundColor: '#FEE500' }}
+              className="px-8 py-4 border-2 border-brand text-dark font-bold text-lg rounded-full hover:shadow-2xl hover:scale-105 transition-all"
             >
               가까운 매장 찾기
             </motion.button>

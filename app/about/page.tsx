@@ -64,28 +64,61 @@ export default function AboutPage() {
                     세모폰 로고
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    <strong className="text-brand">세모폰 로고</strong>는 <strong>"세상의 모든 휴대폰"</strong>이라는<br />
-                    브랜드 철학을 담고 있습니다.
+                    세모폰의 CI에는 브랜드가 추구하는 가치와 방향성이 담겨 있습니다.
                   </p>
+
                   <p className="text-gray-700 leading-relaxed">
-                    삼각형(△) 형태의 심볼은 <strong className="text-gray-900">안정성</strong>과 <strong className="text-gray-900">신뢰</strong>를 상징하며,<br />
-                    노란색(#FEE500)은 <strong className="text-gray-900">밝음</strong>과 <strong className="text-gray-900">투명함</strong>을 표현합니다.
+                    세모폰의 CI는 '연결과 균형'을 기반으로 한 단순한 기하학적 형태에서 출발합니다.<br />
+                    세 개의 선이 이어져 만들어지는 삼각형 구조는 서로 다른 요소들이 하나로 모여 안정적인 형태를 이루는 모습을 의미합니다.
+                  </p>
+
+                  <p className="text-gray-700 leading-relaxed">
+                    이는 다양한 휴대폰과 서비스, 그리고 고객의 선택이 세모폰 안에서 자연스럽게 연결되는 경험을 상징합니다.<br />
+                    삼각형의 세 꼭짓점은 제품, 고객, 서비스라는 핵심 요소를 나타냅니다.
+                  </p>
+
+                  <p className="text-gray-700 leading-relaxed">
+                    각 요소가 균형 있게 조화를 이루며 하나의 구조를 완성하듯, 세모폰은 다양한 브랜드와 통신 서비스를 고객에게 연결합니다.<br />
+                    단순하고 균형 잡힌 형태는 신뢰와 안정감을 의미합니다.
+                  </p>
+
+                  <p className="text-gray-700 leading-relaxed">
+                    빠르게 변화하는 모바일 시장 속에서도 고객이 믿고 선택할 수 있는 기준이 되고자 하는 의지를 담고 있습니다.<br />
+                    또한 '세상 모든 휴대폰'이라는 브랜드 의미를 바탕으로 폭넓은 선택을 제공하고자 합니다.
+                  </p>
+
+                  <p className="text-gray-700 leading-relaxed">
+                    앞으로 세모폰은 이 CI를 중심으로 더 많은 가치와 경험을 전달하는 브랜드로 성장해 나갈 것입니다.
                   </p>
 
                   {/* 다운로드 버튼 */}
-                  <div className="pt-6">
+                  <div className="pt-6 flex flex-col sm:flex-row gap-3">
                     <button
                       onClick={() => {
                         window.open('/downloads/semophone_logos_original.zip', '_blank');
                       }}
                       style={{ backgroundColor: '#FEE500' }}
-                      className="px-8 py-4 text-gray-900 font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                      className="px-6 py-3.5 text-gray-900 font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center justify-center gap-2">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
-                        로고 원본 파일 다운로드
+                        <span className="text-sm">로고 PNG 파일 (ZIP)</span>
+                      </div>
+                    </button>
+                    <button
+                      onClick={() => {
+                        window.open('/downloads/semophone_logo_original.ai', '_blank');
+                      }}
+                      style={{ backgroundColor: '#FEE500' }}
+                      className="px-6 py-3.5 text-gray-900 font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span className="text-sm">로고 AI 원본 파일</span>
                       </div>
                     </button>
                   </div>

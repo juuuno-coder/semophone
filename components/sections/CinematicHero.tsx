@@ -51,7 +51,8 @@ export default function CinematicHero() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold text-lg rounded-full hover:bg-white hover:text-dark transition-all"
+                style={{ backgroundColor: '#FEE500' }}
+                className="px-8 py-4 border-2 border-brand text-dark font-bold text-lg rounded-full hover:shadow-2xl hover:scale-105 transition-all"
               >
                 세모폰 소개
               </motion.button>

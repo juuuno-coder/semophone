@@ -200,7 +200,6 @@ export default function StoresPage() {
                 className="group relative inline-flex items-center gap-3 text-black px-12 md:px-16 py-5 md:py-6 rounded-full text-xl md:text-2xl font-black shadow-[0_8px_30px_rgba(254,229,0,0.5)] hover:shadow-[0_16px_50px_rgba(254,229,0,0.7)] hover:-translate-y-2 transition-all duration-300"
                 style={{ backgroundColor: '#FEE500' }}
               >
-                <div className="absolute inset-0 bg-brand-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Image src="/icons/지도핀.png" alt="" width={28} height={28} className="relative w-7 h-7 object-contain group-hover:scale-110 transition-transform" />
                 <span className="relative">내 위치에서 찾기</span>
                 <svg className="relative w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

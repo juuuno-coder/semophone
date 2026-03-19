@@ -8,7 +8,6 @@ import Footer from '@/components/Footer';
 import SimplifiedHero from '@/components/sections/SimplifiedHero';
 import WhySection from '@/components/sections/WhySection';
 import MinimalStats from '@/components/sections/MinimalStats';
-import TrustMinimal from '@/components/sections/TrustMinimal';
 import MinimalCTA from '@/components/sections/MinimalCTA';
 
 export default function Home() {
@@ -104,9 +103,6 @@ export default function Home() {
 
         {/* 통계 섹션 */}
         <MinimalStats />
-
-        {/* 신뢰 섹션 */}
-        <TrustMinimal />
 
         {/* 최종 CTA */}
         <MinimalCTA />

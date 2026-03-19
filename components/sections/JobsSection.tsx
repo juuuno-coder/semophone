@@ -112,7 +112,7 @@ export default function JobsSection() {
                   const event = new CustomEvent('openContactModal');
                   window.dispatchEvent(event);
                 }}
-                className="flex-1 bg-white text-dark text-center px-8 py-4 rounded-full text-lg font-bold border-2 border-dark hover:bg-dark hover:text-white transition-all"
+                className="flex-1 bg-white text-dark text-center px-8 py-4 rounded-full text-lg font-bold border-2 border-dark hover:shadow-xl hover:scale-105 transition-all"
               >
                 문의하기
               </button>
