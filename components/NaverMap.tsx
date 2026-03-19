@@ -67,6 +67,23 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
     setMap(newMap);
   }, [isMapLoaded, userLocation, map]);
 
+  // 매장 상세 모달 열기 전역 함수 등록
+  useEffect(() => {
+    if (!onStoreClick) return;
+
+    // 전역 함수로 등록하여 infoWindow HTML에서 호출 가능하게
+    (window as any).openStoreDetailById = (storeId: number) => {
+      const store = stores.find(s => s.id === storeId);
+      if (store && onStoreClick) {
+        onStoreClick(store);
+      }
+    };
+
+    return () => {
+      delete (window as any).openStoreDetailById;
+    };
+  }, [stores, onStoreClick]);
+
   // 매장 마커 표시
   useEffect(() => {
     if (!map || !window.naver) return;
@@ -128,9 +145,11 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
               📞 ${store.phone}
             </p>
             <div style="display: flex; gap: 8px;">
-              <div style="flex: 1; background: #F2C811; color: black; padding: 8px;
+              <div onclick="window.openStoreDetailById(${store.id})"
+                   style="flex: 1; background: #F2C811; color: black; padding: 8px;
                           border-radius: 6px; text-align: center;
-                          font-size: 12px; font-weight: bold; cursor: default;">
+                          font-size: 12px; font-weight: bold; cursor: pointer;
+                          transition: all 0.2s ease;">
                 매장정보
               </div>
               <a href="https://map.naver.com/v5/search/${encodeURIComponent(store.address)}"
@@ -141,9 +160,6 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
                 길찾기
               </a>
             </div>
-            <p style="font-size: 11px; color: #999; margin-top: 8px; text-align: center;">
-              ※ 상세정보는 마커를 클릭하세요
-            </p>
           </div>
         `,
         borderWidth: 0,
