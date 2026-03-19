@@ -34,7 +34,6 @@ export default function SimplifiedHero() {
     '/images/semophone_store_banner/Generated Image March 19, 2026 - 1_37PM.jpg',
     '/images/semophone_store_banner/Generated Image March 19, 2026 - 1_42PM.jpg',
     '/images/semophone_store_banner/Generated Image March 19, 2026 - 1_44PM.jpg',
-    '/images/semophone_store_banner/Generated Image March 19, 2026 - 1_46PM.jpg',
     '/images/semophone_store_banner/Generated Image March 19, 2026 - 1_55PM.jpg',
     '/images/semophone_store_banner/Generated Image March 19, 2026 - 1_57PM.jpg',
     '/images/semophone_store_banner/Generated Image March 19, 2026 - 1_58PM.jpg',
