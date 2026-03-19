@@ -118,7 +118,7 @@ export default function SimplifiedHero() {
         </div>
       </section>
 
-      {/* 모바일 버전 - 전체 배경 이미지 + 상단 그라데이션 */}
+      {/* 모바일 버전 - 전체 배경 이미지 + 하단 버튼 */}
       <section className="md:hidden relative w-full h-[85vh] overflow-hidden mt-[56px]">
         {/* 배경 이미지 (가로 100%, 중앙 정렬) */}
         <div className="absolute inset-0">
@@ -141,27 +141,34 @@ export default function SimplifiedHero() {
             </div>
           ))}
 
-          {/* 상단 그라데이션 오버레이 (더 넓게) */}
-          <div className="absolute inset-x-0 top-0 h-[70%] bg-gradient-to-b from-white via-white/95 to-transparent" />
+          {/* 상단 그라데이션 오버레이 */}
+          <div className="absolute inset-x-0 top-0 h-[50%] bg-gradient-to-b from-white via-white/95 to-transparent" />
+
+          {/* 하단 그라데이션 오버레이 */}
+          <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-white via-white/95 to-transparent" />
         </div>
 
         {/* 타이틀 영역 */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-start px-8 pt-20 text-center">
-          <h1 className="text-4xl font-black text-gray-900 mb-4">
-            세모폰
-          </h1>
+        <div className="relative z-10 h-full flex flex-col items-center justify-between px-8 py-8 text-center">
+          {/* 상단 타이틀 */}
+          <div className="pt-12">
+            <h1 className="text-4xl font-black text-gray-900 mb-4">
+              세모폰
+            </h1>
 
-          <p className="text-2xl font-bold text-gray-900 mb-3">
-            세상의 모든 휴대폰 가격을
-            <br />
-            <span className="text-brand">혁신합니다</span>
-          </p>
+            <p className="text-2xl font-bold text-gray-900 mb-3">
+              세상의 모든 휴대폰 가격을
+              <br />
+              <span className="text-brand">혁신합니다</span>
+            </p>
 
-          <p className="text-sm text-gray-600 mb-8">
-            전국 40개 직영매장에서 온라인에 없는 가격을 경험하세요
-          </p>
+            <p className="text-sm text-gray-600">
+              전국 40개 직영매장에서 온라인에 없는 가격을 경험하세요
+            </p>
+          </div>
 
-          <div className="flex flex-col gap-3 w-full max-w-sm">
+          {/* 하단 버튼 */}
+          <div className="w-full max-w-sm pb-4">
             <Link href="/about" className="w-full">
               <button
                 style={{ backgroundColor: '#FEE500' }}
