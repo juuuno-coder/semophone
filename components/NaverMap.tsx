@@ -256,10 +256,10 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
       bounds.extend(new naver.maps.LatLng(userLocation.lat, userLocation.lng));
     }
 
-    // focusRegion이 true일 때는 padding을 줄여서 더 집중
+    // focusRegion이 true일 때는 padding을 늘려서 더 확대
     const padding = focusRegion
-      ? { top: 30, right: 30, bottom: 30, left: 30 }
-      : { top: 50, right: 50, bottom: 50, left: 50 };
+      ? { top: 60, right: 60, bottom: 60, left: 60 }
+      : { top: 80, right: 80, bottom: 80, left: 80 };
 
     map.fitBounds(bounds, padding);
   }, [map, stores, userLocation, focusRegion]);

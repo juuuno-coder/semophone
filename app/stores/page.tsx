@@ -606,7 +606,7 @@ export default function StoresPage() {
                 onStoreClick={(store) => {
                   openStoreDetail(store);
                 }}
-                focusRegion={selectedSubRegion !== '전체'}
+                focusRegion={selectedRegion !== '전체'}
               />
             </div>
           </div>
