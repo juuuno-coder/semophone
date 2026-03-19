@@ -107,7 +107,10 @@ export default function SimplifiedHero() {
 
             <div className="flex gap-4 items-center">
               <Link href="/about">
-                <button className="px-8 py-4 bg-brand text-gray-900 font-bold text-lg rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                <button
+                  style={{ backgroundColor: '#FEE500' }}
+                  className="px-8 py-4 text-gray-900 font-bold text-lg rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                >
                   세모폰 소개
                 </button>
               </Link>
@@ -161,7 +164,10 @@ export default function SimplifiedHero() {
 
           <div className="flex flex-col gap-3 w-full max-w-sm">
             <Link href="/about" className="w-full">
-              <button className="w-full px-6 py-3 bg-brand text-gray-900 font-bold text-base rounded-full shadow-lg hover:scale-105 transition-transform">
+              <button
+                style={{ backgroundColor: '#FEE500' }}
+                className="w-full px-6 py-3 text-gray-900 font-bold text-base rounded-full shadow-lg hover:scale-105 transition-transform"
+              >
                 세모폰 소개
               </button>
             </Link>
