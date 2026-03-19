@@ -11,7 +11,6 @@ import Footer from '@/components/Footer';
 import StoreDetailModal from '@/components/StoreDetailModal';
 import { SwipeableStoreCard } from '@/components/ui/SwipeableStoreCard';
 import { PullToRefresh } from '@/components/ui/PullToRefresh';
-import { RegionAccordion } from '@/components/RegionAccordion';
 import { haptics } from '@/lib/haptics';
 
 const NaverMap = dynamic(() => import('@/components/NaverMap'), { ssr: false });
@@ -26,7 +25,6 @@ export default function StoresPage() {
   const [nearestStores, setNearestStores] = useState<StoreWithDistance[]>([]);
   const [selectedRegion, setSelectedRegion] = useState<string>('전체');
   const [selectedSubRegion, setSelectedSubRegion] = useState<string>('전체');
-  const [expandedRegion, setExpandedRegion] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [locationState, setLocationState] = useState<'initial' | 'loading' | 'success' | 'error'>('initial');
   const [locationError, setLocationError] = useState<string>('');
@@ -494,88 +492,111 @@ export default function StoresPage() {
               </div>
             </div>
 
-            {/* 지역 필터 - 2단계 Accordion */}
+            {/* 지역 필터 - 태그 클라우드 */}
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Image src="/icons/지도핀.png" alt="" width={24} height={24} className="w-6 h-6 object-contain" />
                 <h3 className="text-lg font-bold text-gray-900">지역 선택</h3>
               </div>
+
               <div className="space-y-3">
                 {/* 전체 버튼 */}
-                <motion.button
-                  onClick={() => {
-                    haptics.light();
-                    setSelectedRegion('전체');
-                    setSelectedSubRegion('전체');
-                    setExpandedRegion(null);
-                  }}
-                  className={`w-full px-6 py-3 rounded-xl font-semibold transition-all ${
-                    selectedRegion === '전체'
-                      ? 'bg-brand text-black shadow-lg'
-                      : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200'
-                  }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    {selectedRegion === '전체' && <span>📍</span>}
-                    <span>전체</span>
+                <div className="flex flex-wrap gap-2">
+                  <motion.button
+                    onClick={() => {
+                      haptics.light();
+                      setSelectedRegion('전체');
+                      setSelectedSubRegion('전체');
+                    }}
+                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                      selectedRegion === '전체'
+                        ? 'bg-brand text-black shadow-md'
+                        : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    📍 전체
+                  </motion.button>
+                </div>
+
+                {/* 서울 */}
+                <div>
+                  <div className="text-xs font-semibold text-gray-500 mb-2 px-1">서울</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['전체', '동부', '서부'].map((sub) => (
+                      <motion.button
+                        key={`서울-${sub}`}
+                        onClick={() => {
+                          haptics.light();
+                          setSelectedRegion('서울');
+                          setSelectedSubRegion(sub);
+                        }}
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                          selectedRegion === '서울' && selectedSubRegion === sub
+                            ? 'bg-brand text-black shadow-md'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {sub}
+                      </motion.button>
+                    ))}
                   </div>
-                </motion.button>
+                </div>
 
-                {/* 서울 Accordion */}
-                <RegionAccordion
-                  region="서울"
-                  subRegions={['전체', '동부', '서부']}
-                  selectedRegion={selectedRegion}
-                  selectedSubRegion={selectedSubRegion}
-                  expandedRegion={expandedRegion}
-                  onRegionClick={(region) => {
-                    haptics.light();
-                    setSelectedRegion(region);
-                  }}
-                  onSubRegionClick={(subRegion) => {
-                    haptics.light();
-                    setSelectedSubRegion(subRegion);
-                  }}
-                  onToggle={setExpandedRegion}
-                />
+                {/* 경기 */}
+                <div>
+                  <div className="text-xs font-semibold text-gray-500 mb-2 px-1">경기</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['전체', '부천', '성남/분당', '기타'].map((sub) => (
+                      <motion.button
+                        key={`경기-${sub}`}
+                        onClick={() => {
+                          haptics.light();
+                          setSelectedRegion('경기');
+                          setSelectedSubRegion(sub);
+                        }}
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                          selectedRegion === '경기' && selectedSubRegion === sub
+                            ? 'bg-brand text-black shadow-md'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {sub}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
 
-                {/* 경기 Accordion */}
-                <RegionAccordion
-                  region="경기"
-                  subRegions={['전체', '부천', '성남/분당', '기타']}
-                  selectedRegion={selectedRegion}
-                  selectedSubRegion={selectedSubRegion}
-                  expandedRegion={expandedRegion}
-                  onRegionClick={(region) => {
-                    haptics.light();
-                    setSelectedRegion(region);
-                  }}
-                  onSubRegionClick={(subRegion) => {
-                    haptics.light();
-                    setSelectedSubRegion(subRegion);
-                  }}
-                  onToggle={setExpandedRegion}
-                />
-
-                {/* 인천 Accordion */}
-                <RegionAccordion
-                  region="인천"
-                  subRegions={['전체', '남부', '북부', '송도']}
-                  selectedRegion={selectedRegion}
-                  selectedSubRegion={selectedSubRegion}
-                  expandedRegion={expandedRegion}
-                  onRegionClick={(region) => {
-                    haptics.light();
-                    setSelectedRegion(region);
-                  }}
-                  onSubRegionClick={(subRegion) => {
-                    haptics.light();
-                    setSelectedSubRegion(subRegion);
-                  }}
-                  onToggle={setExpandedRegion}
-                />
+                {/* 인천 */}
+                <div>
+                  <div className="text-xs font-semibold text-gray-500 mb-2 px-1">인천</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['전체', '남부', '북부', '송도'].map((sub) => (
+                      <motion.button
+                        key={`인천-${sub}`}
+                        onClick={() => {
+                          haptics.light();
+                          setSelectedRegion('인천');
+                          setSelectedSubRegion(sub);
+                        }}
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                          selectedRegion === '인천' && selectedSubRegion === sub
+                            ? 'bg-brand text-black shadow-md'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {sub}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
