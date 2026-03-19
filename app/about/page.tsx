@@ -2,9 +2,8 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import WhySection from '@/components/sections/WhySection';
-import TrustSection from '@/components/sections/TrustSection';
 import Image from 'next/image';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
 const NaverMap = dynamic(() => import('@/components/NaverMap'), { ssr: false });
@@ -29,26 +28,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Mission */}
-        <section className="bg-white py-24 px-3 text-center">
-          <div className="max-w-container-md mx-auto">
-            <Image
-              src="/images/logo/기본로고.png"
-              alt="세모폰"
-              width={120}
-              height={120}
-              className="mx-auto mb-6 opacity-90"
-            />
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              세상의 모든<br />
-              휴대폰 가격을 내리다
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              세모폰은 고객이 불필요한 비용을 지불하지 않도록,<br />
-              투명한 가격과 정직한 서비스로 신뢰를 쌓아갑니다.
-            </p>
-          </div>
-        </section>
 
         {/* 브랜드 아이덴티티 */}
         <section className="bg-gray-50 py-24 px-3">
@@ -116,11 +95,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 기존 섹션 재사용 */}
-        <WhySection />
-        <TrustSection />
 
-        {/* 본사 약도 */}
+        {/* 매장 위치 */}
         <section className="bg-white py-24 px-3">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -128,12 +104,12 @@ export default function AboutPage() {
                 찾아오시는 길
               </h2>
               <p className="text-gray-600 mb-2">
-                세모폰 본사로 오시는 길을 안내합니다
+                휴대폰성지 세모폰 광명6동점
               </p>
               <div className="text-base text-gray-800 font-semibold mt-6">
-                <p>서울특별시 강남구 테헤란로 123 세모폰빌딩 5층</p>
+                <p>경기도 광명시 광명로 824 1층 (광명동)</p>
                 <p className="text-gray-600 text-sm mt-2">
-                  📞 02-1234-5678 | 📧 info@semophone.co.kr
+                  📞 031-1234-5678
                 </p>
               </div>
             </div>
@@ -142,42 +118,32 @@ export default function AboutPage() {
             <div className="h-[500px] rounded-2xl overflow-hidden shadow-xl mb-12">
               <NaverMap
                 stores={[{
-                  id: 0,
-                  name: '세모폰 본사',
-                  address: '서울특별시 강남구 테헤란로 123',
-                  phone: '02-1234-5678',
-                  region: '서울',
-                  subRegion: '동부',
-                  lat: 37.5012,
-                  lng: 127.0396,
+                  id: 1,
+                  name: '휴대폰성지 세모폰 광명6동점',
+                  address: '경기도 광명시 광명로 824 1층 (광명동)',
+                  phone: '031-1234-5678',
+                  region: '경기',
+                  subRegion: '기타',
+                  lat: 37.4787,
+                  lng: 126.8644,
                 }]}
                 userLocation={null}
               />
             </div>
 
-            {/* 교통편 안내 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-50 rounded-2xl p-6 text-center">
-                <div className="text-4xl mb-3">🚇</div>
-                <h3 className="font-bold text-lg mb-2 text-gray-900">지하철</h3>
-                <p className="text-sm text-gray-600">
-                  2호선 강남역 3번출구<br />도보 5분
-                </p>
-              </div>
-              <div className="bg-gray-50 rounded-2xl p-6 text-center">
-                <div className="text-4xl mb-3">🚌</div>
-                <h3 className="font-bold text-lg mb-2 text-gray-900">버스</h3>
-                <p className="text-sm text-gray-600">
-                  간선: 146, 740<br />지선: 3012, 4412
-                </p>
-              </div>
-              <div className="bg-gray-50 rounded-2xl p-6 text-center">
-                <div className="text-4xl mb-3">🚗</div>
-                <h3 className="font-bold text-lg mb-2 text-gray-900">주차</h3>
-                <p className="text-sm text-gray-600">
-                  건물 지하 1-3층<br />방문객 2시간 무료
-                </p>
-              </div>
+            {/* 안내 메시지 */}
+            <div className="text-center bg-gray-50 rounded-2xl p-8">
+              <p className="text-lg text-gray-700">
+                전국 40개 직영매장에서 세모폰을 만나보세요
+              </p>
+              <Link href="/stores" className="inline-block mt-4">
+                <button
+                  style={{ backgroundColor: '#FEE500' }}
+                  className="px-8 py-3 text-gray-900 font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                >
+                  전체 매장 보기
+                </button>
+              </Link>
             </div>
           </div>
         </section>
