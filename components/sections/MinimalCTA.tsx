@@ -14,17 +14,6 @@ export default function MinimalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.3 }}
         >
-          {/* 아이콘 */}
-          <div className="w-24 h-24 mx-auto mb-8">
-            <Image
-              src="/icons/세모폰 기본 매장찾기.png"
-              alt="매장 찾기"
-              width={96}
-              height={96}
-              className="w-full h-auto"
-            />
-          </div>
-
           {/* 제목 */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-dark mb-6 leading-tight">
             단 한 명의 고객도<br />
