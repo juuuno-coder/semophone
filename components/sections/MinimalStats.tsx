@@ -30,7 +30,7 @@ export default function MinimalStats() {
       }}
     >
       <div className="max-w-[85%] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[6fr_4fr] gap-10 lg:gap-12 items-center">
           {/* 왼쪽: 이미지 슬라이드쇼 (100% 표시) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -39,7 +39,7 @@ export default function MinimalStats() {
             transition={{ duration: 0.3 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden h-[400px] md:h-[500px] flex items-start justify-center">
+            <div className="relative rounded-2xl overflow-hidden h-[350px] md:h-[420px] flex items-start justify-center bg-white shadow-lg">
               {/* 상단 고정 정렬 - 이미지 높이가 달라도 위치 안 변함 */}
               <Image
                 src={storeImages[currentImageIndex]}
@@ -75,18 +75,18 @@ export default function MinimalStats() {
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
           >
-            <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight">
               <span className="text-dark">수도권 40개 성지에서<br />
               검증된 신뢰</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-dark/80 mb-10 leading-relaxed">
+            <p className="text-base md:text-lg text-dark/80 mb-8 leading-relaxed">
               15만 명이 선택한 세모폰<br />
               가까운 매장에서 최저가를 경험하세요
             </p>
 
             {/* 통계 그리드 */}
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               {[
                 { number: '150,000+', label: '누적 개통', icon: '/icons/차트.png' },
                 { number: '40+', label: '직영 매장', icon: '/icons/건물.png' },
@@ -99,20 +99,20 @@ export default function MinimalStats() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-dark/5"
+                  whileHover={{ scale: 1.03, y: -3 }}
+                  className="bg-white/95 backdrop-blur-sm rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-dark/5"
                 >
                   <Image
                     src={stat.icon}
                     alt={stat.label}
-                    width={64}
-                    height={64}
-                    className="w-12 h-12 md:w-16 md:h-16 object-contain mx-auto mb-4"
+                    width={56}
+                    height={56}
+                    className="w-10 h-10 md:w-12 md:h-12 object-contain mx-auto mb-3"
                   />
-                  <div className="text-4xl md:text-5xl font-black text-dark mb-3 tracking-tight">
+                  <div className="text-3xl md:text-4xl font-black text-dark mb-2 tracking-tight">
                     {stat.number}
                   </div>
-                  <div className="text-sm md:text-base font-semibold text-dark/70">
+                  <div className="text-xs md:text-sm font-semibold text-dark/70">
                     {stat.label}
                   </div>
                 </motion.div>
