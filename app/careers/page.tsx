@@ -41,13 +41,20 @@ export default function CareersPage() {
         <section className="bg-white py-24 px-3">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
+              <Image
+                src="/icons/전구.png"
+                alt="핵심 가치"
+                width={96}
+                height={96}
+                className="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto mb-6"
+              />
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">핵심 가치</h2>
               <p className="text-gray-600">세모폰이 추구하는 4가지 핵심 가치</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {coreValues.map((value, i) => (
                 <div key={i} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-                  <div className="w-14 h-14 mb-6 mx-auto">
+                  <div className="w-16 h-16 md:w-20 md:h-20 mb-6 mx-auto">
                     <img src={value.icon} alt={value.title} className="w-full h-full object-contain" />
                   </div>
                   <h3 className="text-xl font-black text-gray-900 mb-3 text-center">{value.title}</h3>
@@ -61,6 +68,13 @@ export default function CareersPage() {
         {/* 회사 문화 */}
         <section className="bg-gray-50 py-24 px-3 text-center">
           <div className="max-w-7xl mx-auto">
+            <Image
+              src="/icons/하트.png"
+              alt="회사 문화"
+              width={96}
+              height={96}
+              className="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto mb-6"
+            />
             <h2 className="text-3xl md:text-4xl font-bold mb-4">회사 문화</h2>
             <p className="text-gray-600 mb-12">성장을 응원하는 문화</p>
 
@@ -81,6 +95,13 @@ export default function CareersPage() {
         {/* 복리후생 */}
         <section className="bg-white py-24 px-3 text-center">
           <div className="max-w-7xl mx-auto">
+            <Image
+              src="/icons/선물.png"
+              alt="복리후생"
+              width={96}
+              height={96}
+              className="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto mb-6"
+            />
             <h2 className="text-3xl md:text-4xl font-bold mb-12">복리후생</h2>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -101,6 +122,13 @@ export default function CareersPage() {
         <section className="bg-gray-50 py-24 px-3">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
+              <Image
+                src="/icons/접수.png"
+                alt="채용 프로세스"
+                width={96}
+                height={96}
+                className="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto mb-6"
+              />
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
                 채용 프로세스
               </h2>

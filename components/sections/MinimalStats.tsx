@@ -47,6 +47,7 @@ export default function MinimalStats() {
                 width={800}
                 height={600}
                 className="w-full h-full object-contain object-top"
+                style={{ imageOrientation: 'from-image' }}
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority={currentImageIndex === 0}
               />

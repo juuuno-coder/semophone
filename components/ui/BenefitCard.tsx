@@ -30,9 +30,9 @@ export default function BenefitCard({ icon, title, description, className, delay
           <Image
             src={icon}
             alt={title}
-            width={56}
-            height={56}
-            className="w-14 h-14 object-contain"
+            width={80}
+            height={80}
+            className="w-16 h-16 md:w-20 md:h-20 object-contain"
           />
         ) : (
           <div className="text-5xl">{icon}</div>

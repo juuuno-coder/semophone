@@ -447,6 +447,30 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Custom Scrollbar Styles */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 3px;
+  }
+  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background-color: #9ca3af;
+  }
+  .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+  }
+  .scrollbar-thumb-gray-400::-webkit-scrollbar-thumb {
+    background-color: #9ca3af;
+  }
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+  }
   .fade-in-d1 { transition-delay: 0.1s; }
   .fade-in-d2 { transition-delay: 0.2s; }
   .fade-in-d3 { transition-delay: 0.3s; }

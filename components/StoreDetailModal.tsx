@@ -78,7 +78,7 @@ export default function StoreDetailModal({ store, isOpen, onClose }: StoreDetail
           onClick={onClose}
         >
           <motion.div
-            className="relative bg-white w-full md:max-w-2xl md:rounded-3xl shadow-2xl max-h-[90vh] overflow-hidden rounded-t-3xl md:rounded-b-3xl z-modal"
+            className="relative bg-white w-full md:max-w-2xl md:rounded-3xl shadow-2xl max-h-[92vh] overflow-hidden rounded-t-3xl md:rounded-b-3xl z-modal"
             onClick={(e) => e.stopPropagation()}
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
@@ -102,9 +102,9 @@ export default function StoreDetailModal({ store, isOpen, onClose }: StoreDetail
         </button>
 
         {/* 스크롤 가능한 컨텐츠 영역 */}
-        <div className="overflow-y-auto max-h-[90vh]">
+        <div className="overflow-y-auto max-h-[92vh] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400">
           {/* 이미지 갤러리 */}
-          <div className="relative w-full aspect-[16/9] bg-gray-900 overflow-hidden flex-shrink-0">
+          <div className="relative w-full aspect-[4/3] bg-gray-900 overflow-hidden flex-shrink-0">
           {/* 메인 이미지 */}
           <Image
             src={images[currentImageIndex]}
@@ -113,7 +113,7 @@ export default function StoreDetailModal({ store, isOpen, onClose }: StoreDetail
             className="object-contain"
             style={{ imageOrientation: 'from-image' }}
             sizes="(max-width: 768px) 100vw, 672px"
-            unoptimized
+            priority={currentImageIndex === 0}
           />
 
           {/* 이미지 네비게이션 (여러 이미지가 있을 때만) */}
@@ -166,7 +166,7 @@ export default function StoreDetailModal({ store, isOpen, onClose }: StoreDetail
         </div>
 
           {/* 매장 정보 */}
-          <div className="p-4 md:p-6">
+          <div className="p-4 md:p-5">
             {/* 헤더 */}
             <div className="mb-4">
               <div className="flex items-center gap-3 mb-2">
@@ -180,7 +180,7 @@ export default function StoreDetailModal({ store, isOpen, onClose }: StoreDetail
             </div>
 
             {/* 정보 섹션 */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-2.5 mb-4">
               {/* 주소 */}
               <div className="flex items-start gap-4 bg-gray-50 p-4 rounded-xl">
                 <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center">

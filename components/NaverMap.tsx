@@ -170,7 +170,7 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
                         display: flex; align-items: center; justify-content: center;
                         transition: all 0.2s ease;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.8 1.8 5.2 4.5 6.6-.2.7-.6 2.5-.7 2.8-.1.4 0 .4.2.3.2-.1 2.5-1.7 3.2-2.2.6.1 1.2.2 1.8.2 5.523 0 10-3.477 10-7.8S17.523 3 12 3zm-3.5 10.5c-.4 0-.8-.3-.8-.8v-3.5h-.9c-.4 0-.8-.3-.8-.8s.3-.8.8-.8h3.4c.4 0 .8.3.8.8s-.3.8-.8.8h-.9v3.5c0 .5-.3.8-.8.8zm4.5 0c-.4 0-.8-.3-.8-.8v-4.9c0-.4.3-.8.8-.8s.8.3.8.8v4.9c0 .5-.4.8-.8.8zm4.2 0c-.3 0-.5-.1-.7-.3l-1.8-2.4v2c0 .4-.3.8-.8.8s-.8-.3-.8-.8v-4.9c0-.4.3-.8.8-.8.3 0 .5.1.7.3l1.8 2.4v-2c0-.4.3-.8.8-.8s.8.3.8.8v4.9c0 .5-.4.8-.8.8z"/>
+                  <path d="M12 2C6.5 2 2 6.1 2 11c0 3.2 2.1 6 5.2 7.5-.2.8-.7 2.7-.8 3 0 .3.1.5.3.6.2.1.4 0 .6-.1.3-.1 3.5-2.3 4.1-2.8.8.1 1.5.2 2.3.2 5.5 0 10-4.1 10-9S17.5 2 12 2z"/>
                 </svg>
               </a>
             </div>
@@ -206,9 +206,6 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
           infoWindow.close();
         } else {
           infoWindow.open(map, marker);
-          if (onStoreClick) {
-            onStoreClick(store);
-          }
         }
       });
 
