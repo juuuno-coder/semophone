@@ -39,32 +39,29 @@ export default function MinimalStats() {
             transition={{ duration: 0.3 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[500px] lg:h-[550px] flex items-start justify-center bg-white shadow-lg">
-              {/* 상단 고정 정렬 - 이미지 높이가 달라도 위치 안 변함 */}
-              <Image
-                src={storeImages[currentImageIndex]}
-                alt={`세모폰 매장 ${currentImageIndex + 1}`}
-                width={800}
-                height={600}
-                className="w-full h-full object-contain object-top"
-                style={{ imageOrientation: 'from-image' }}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority={currentImageIndex === 0}
-              />
+            <Image
+              src={storeImages[currentImageIndex]}
+              alt={`세모폰 매장 ${currentImageIndex + 1}`}
+              width={1200}
+              height={800}
+              className="w-full h-auto rounded-2xl shadow-lg bg-white"
+              style={{ imageOrientation: 'from-image' }}
+              sizes="(max-width: 768px) 100vw, 60vw"
+              priority={currentImageIndex === 0}
+            />
 
-              {/* 인디케이터 */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-                {storeImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex ? 'bg-dark w-8' : 'bg-dark/50'
-                    }`}
-                    aria-label={`이미지 ${index + 1}`}
-                  />
-                ))}
-              </div>
+            {/* 인디케이터 */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+              {storeImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentImageIndex ? 'bg-dark w-8' : 'bg-dark/50'
+                  }`}
+                  aria-label={`이미지 ${index + 1}`}
+                />
+              ))}
             </div>
           </motion.div>
 
