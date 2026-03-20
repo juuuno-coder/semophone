@@ -29,7 +29,7 @@ export default function MinimalStats() {
         background: 'linear-gradient(135deg, #FEE500 0%, #FDD835 50%, #FEE500 100%)',
       }}
     >
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-[85%] mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* 왼쪽: 이미지 슬라이드쇼 (100% 표시) */}
           <motion.div
@@ -75,7 +75,7 @@ export default function MinimalStats() {
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
           >
-            <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
               <span className="text-dark">수도권 40개 성지에서<br />
               검증된 신뢰</span>
             </h2>
@@ -88,10 +88,10 @@ export default function MinimalStats() {
             {/* 통계 그리드 */}
             <div className="grid grid-cols-2 gap-4 md:gap-6">
               {[
-                { number: '150,000+', label: '누적 개통' },
-                { number: '40+', label: '직영 매장' },
-                { number: '4.8★', label: '만족도' },
-                { number: '365일', label: '사후관리' },
+                { number: '150,000+', label: '누적 개통', icon: '/icons/차트.png' },
+                { number: '40+', label: '직영 매장', icon: '/icons/건물.png' },
+                { number: '4.8★', label: '만족도', icon: '/icons/ok.png' },
+                { number: '365일', label: '사후관리', icon: '/icons/시계.png' },
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -102,6 +102,13 @@ export default function MinimalStats() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-dark/5"
                 >
+                  <Image
+                    src={stat.icon}
+                    alt={stat.label}
+                    width={64}
+                    height={64}
+                    className="w-12 h-12 md:w-16 md:h-16 object-contain mx-auto mb-4"
+                  />
                   <div className="text-4xl md:text-5xl font-black text-dark mb-3 tracking-tight">
                     {stat.number}
                   </div>
