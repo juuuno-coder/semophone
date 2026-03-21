@@ -198,7 +198,7 @@ export default function SimplifiedHero() {
                 alt="세모폰 매장"
                 fill
                 className="object-contain"
-                style={{ objectPosition: 'center 65%' }}
+                style={{ objectPosition: 'center 58%' }}
                 priority={index === 0}
               />
             </div>
@@ -214,12 +214,12 @@ export default function SimplifiedHero() {
         {/* 타이틀 영역 */}
         <div className="relative z-10 h-full flex flex-col items-center px-8 py-8 text-center">
           {/* 상단 타이틀 */}
-          <div className="pt-8 flex-shrink-0">
-            <h1 className="text-4xl font-black text-gray-900 mb-4">
+          <div className="pt-4 flex-shrink-0">
+            <h1 className="text-4xl font-black text-gray-900 mb-3">
               세모폰
             </h1>
 
-            <p className="text-2xl font-bold text-gray-900 mb-3">
+            <p className="text-2xl font-bold text-gray-900 mb-2">
               세상의 모든 휴대폰 가격을
               <br />
               <span className="text-brand">혁신합니다</span>
