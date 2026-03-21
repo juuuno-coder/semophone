@@ -21,7 +21,7 @@ export default function MinimalCTA() {
           </h2>
 
           {/* 부제목 */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed">
+          <p className="text-xl md:text-xl lg:text-2xl text-gray-600 mb-12 leading-relaxed">
             숨은 비용 없이 투명하게, 정직하게<br className="hidden sm:block" />
             세모폰의 약속입니다
           </p>
@@ -30,13 +30,13 @@ export default function MinimalCTA() {
           <div className="flex justify-center">
             <Link
               href="/stores"
-              className="inline-flex items-center justify-center px-10 py-5 text-black rounded-full text-lg font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+              className="inline-flex items-center justify-center px-8 py-4 md:px-9 md:py-4.5 lg:px-10 lg:py-5 text-black rounded-full text-base md:text-lg lg:text-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               style={{ backgroundColor: '#FEE500' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FDD835'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FEE500'}
             >
               가까운 성지 찾기
-              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="ml-2 w-5 h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -44,7 +44,7 @@ export default function MinimalCTA() {
 
           {/* 신뢰 배지 */}
           <div className="mt-16 pt-16 border-t border-gray-200">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-7 lg:gap-8">
               {[
                 { icon: '/icons/보안.png', text: '정품 보증' },
                 { icon: '/icons/ok.png', text: '투명한 가격' },
@@ -52,7 +52,7 @@ export default function MinimalCTA() {
                 { icon: '/icons/하트.png', text: '365일 케어' },
               ].map((badge, i) => (
                 <div key={i} className="flex flex-col items-center gap-3">
-                  <div className="w-12 h-12 relative">
+                  <div className="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 relative">
                     <Image
                       src={badge.icon}
                       alt={badge.text}
@@ -61,7 +61,7 @@ export default function MinimalCTA() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="text-sm font-semibold text-gray-700">{badge.text}</span>
+                  <span className="text-xs md:text-sm lg:text-sm font-semibold text-gray-700">{badge.text}</span>
                 </div>
               ))}
             </div>

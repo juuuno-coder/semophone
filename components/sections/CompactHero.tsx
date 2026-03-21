@@ -35,13 +35,13 @@ const CompactHero = forwardRef<HTMLElement>((props, ref) => {
           className="space-y-4"
         >
           {/* 메인 타이틀 */}
-          <h1 className="text-4xl md:text-5xl font-black text-dark leading-tight">
+          <h1 className="text-4xl md:text-[2.75rem] lg:text-5xl font-black text-dark leading-tight">
             세상의 모든<br />
             휴대폰 가격을 내리다
           </h1>
 
           {/* 서브 타이틀 */}
-          <p className="text-lg md:text-xl text-dark/80 font-semibold">
+          <p className="text-lg md:text-lg lg:text-xl text-dark/80 font-semibold">
             전국 40+ 매장, 최저가 보장
           </p>
 
@@ -54,9 +54,9 @@ const CompactHero = forwardRef<HTMLElement>((props, ref) => {
           >
             <Link
               href="/stores"
-              className="inline-flex items-center gap-2 bg-dark text-white px-8 py-4 rounded-full text-lg font-bold shadow-strong hover:shadow-brand-hover hover:scale-105 transition-all active:scale-95"
+              className="inline-flex items-center gap-2 bg-dark text-white px-7 py-3.5 md:px-8 md:py-4 lg:px-9 lg:py-4.5 rounded-full text-base md:text-lg lg:text-xl font-bold shadow-strong hover:shadow-brand-hover hover:scale-105 transition-all active:scale-95"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>

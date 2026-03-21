@@ -83,7 +83,7 @@ export default function MinimalStats() {
             </p>
 
             {/* 통계 그리드 */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-3.5 lg:gap-4">
               {[
                 { number: '150,000+', label: '누적 개통', icon: '/icons/차트.png' },
                 { number: '40+', label: '직영 매장', icon: '/icons/건물.png' },
@@ -97,19 +97,19 @@ export default function MinimalStats() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   whileHover={{ scale: 1.03, y: -3 }}
-                  className="bg-white/95 backdrop-blur-sm rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-dark/5"
+                  className="bg-white/95 backdrop-blur-sm rounded-xl p-5 md:p-6 lg:p-7 shadow-lg hover:shadow-xl transition-all duration-300 border border-dark/5"
                 >
                   <Image
                     src={stat.icon}
                     alt={stat.label}
                     width={56}
                     height={56}
-                    className="w-10 h-10 md:w-12 md:h-12 object-contain mx-auto mb-3"
+                    className="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 object-contain mx-auto mb-3"
                   />
-                  <div className="text-3xl md:text-4xl font-black text-dark mb-2 tracking-tight">
+                  <div className="text-3xl md:text-[2rem] lg:text-4xl font-black text-dark mb-2 tracking-tight">
                     {stat.number}
                   </div>
-                  <div className="text-xs md:text-sm font-semibold text-dark/70">
+                  <div className="text-xs md:text-[0.8125rem] lg:text-sm font-semibold text-dark/70">
                     {stat.label}
                   </div>
                 </motion.div>
