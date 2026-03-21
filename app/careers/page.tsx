@@ -42,7 +42,7 @@ export default function CareersPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <Image
-                src="/icons/전구.png"
+                src="/icons/나침반.png"
                 alt="핵심 가치"
                 width={96}
                 height={96}

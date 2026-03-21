@@ -116,7 +116,7 @@ export const cultureValues = [
 
 export const coreValues = [
   {
-    icon: "/icons/전구.png",
+    icon: "/icons/나침반.png",
     title: "혁신 Innovation",
     description: "기존의 틀을 깨고 새로운 가치를 창출합니다"
   },
