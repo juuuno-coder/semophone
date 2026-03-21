@@ -130,12 +130,12 @@ export default function NaverMap({
         icon: {
           content: `
             <div style="
-              display: flex;
+              display: inline-flex;
               align-items: center;
               gap: 6px;
               background: #FEE500;
               color: black;
-              padding: 8px 12px;
+              padding: 8px 14px;
               border-radius: 20px;
               font-size: 13px;
               font-weight: bold;
@@ -143,14 +143,17 @@ export default function NaverMap({
               white-space: nowrap;
               cursor: pointer;
               border: 2px solid white;
+              min-width: max-content;
+              width: auto;
+              max-width: none;
             ">
               <img
                 src="/icons/세모폰 기본.png"
                 alt="세모폰"
-                style="width: 24px; height: 24px; object-fit: contain;"
+                style="width: 24px; height: 24px; object-fit: contain; flex-shrink: 0;"
                 onerror="this.style.display='none'"
               />
-              <span style="text-shadow: 0 1px 2px rgba(255,255,255,0.3);">${store.name}</span>
+              <span style="text-shadow: 0 1px 2px rgba(255,255,255,0.3); flex-shrink: 0;">${store.name}</span>
             </div>
           `,
           anchor: new naver.maps.Point(60, 30),
