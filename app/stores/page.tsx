@@ -73,6 +73,8 @@ export default function StoresPage() {
     setLocationState('loading');
     setLocationError('');
 
+    const startTime = Date.now();
+
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -101,7 +103,13 @@ export default function StoresPage() {
           setNearestStores(storesWithDistance.slice(0, 3));
         }
 
-        setLocationState('success');
+        // 최소 1초 딜레이 보장 (UX 개선)
+        const elapsed = Date.now() - startTime;
+        const remainingTime = Math.max(0, 1000 - elapsed);
+
+        setTimeout(() => {
+          setLocationState('success');
+        }, remainingTime);
       },
       (error) => {
         console.error('위치 정보를 가져올 수 없습니다:', error);
@@ -116,7 +124,14 @@ export default function StoresPage() {
         }
 
         setLocationError(errorMessage);
-        setLocationState('error');
+
+        // 에러도 최소 1초 후 표시 (일관성 유지)
+        const elapsed = Date.now() - startTime;
+        const remainingTime = Math.max(0, 1000 - elapsed);
+
+        setTimeout(() => {
+          setLocationState('error');
+        }, remainingTime);
       }
     );
   }, []);
@@ -233,19 +248,114 @@ export default function StoresPage() {
             </div>
           )}
 
-          {/* Step 2: Loading - 위치 확인 중 */}
+          {/* Step 2: Loading - 위치 확인 중 (화려한 모달) */}
           {locationState === 'loading' && (
-            <div className="text-center py-12">
-              <div className="w-20 h-20 mx-auto mb-6">
-                <div className="w-20 h-20 border-4 border-brand border-t-transparent rounded-full animate-spin"></div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative py-16 px-6"
+            >
+              {/* 배경 장식 */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-brand/5 rounded-3xl"></div>
+              <div className="absolute top-10 left-10 w-32 h-32 bg-brand/20 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-10 right-10 w-40 h-40 bg-primary-hover/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+
+              <div className="relative text-center">
+                {/* 로딩 아이콘 영역 */}
+                <div className="relative inline-block mb-8">
+                  {/* 회전하는 외부 링 */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-32 h-32 border-4 border-brand/30 border-t-brand rounded-full animate-spin"></div>
+                  </div>
+
+                  {/* 중앙 아이콘 */}
+                  <div className="relative w-32 h-32 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-brand/10 rounded-full blur-xl animate-pulse"></div>
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 5, -5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="relative"
+                    >
+                      <Image
+                        src="/icons/지도핀.png"
+                        alt="검색 중"
+                        width={64}
+                        height={64}
+                        className="w-16 h-16 object-contain drop-shadow-lg"
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* 점점이 효과 */}
+                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 1, repeat: Infinity, delay: 0 }}
+                      className="w-2.5 h-2.5 bg-brand rounded-full"
+                    ></motion.div>
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
+                      className="w-2.5 h-2.5 bg-brand rounded-full"
+                    ></motion.div>
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
+                      className="w-2.5 h-2.5 bg-brand rounded-full"
+                    ></motion.div>
+                  </div>
+                </div>
+
+                {/* 텍스트 영역 */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-2xl md:text-3xl font-black text-gray-900 mb-3"
+                >
+                  가까운 성지를 찾고 있어요
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-base md:text-lg text-gray-600 mb-6"
+                >
+                  위치 정보를 기반으로<br className="md:hidden" />
+                  최적의 매장을 찾고 있습니다
+                </motion.p>
+
+                {/* 진행 상태 배지 */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-brand/20"
+                >
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-brand/30 rounded-full blur-md animate-pulse"></div>
+                    <Image
+                      src="/icons/나침반.png"
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="relative w-6 h-6 object-contain"
+                    />
+                  </div>
+                  <span className="text-sm md:text-base font-bold text-gray-900">
+                    위치 분석 중...
+                  </span>
+                </motion.div>
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                가까운 성지를 찾고 있어요...
-              </h3>
-              <p className="text-sm md:text-base text-gray-600">
-                잠시만 기다려주세요 (3-5초 소요)
-              </p>
-            </div>
+            </motion.div>
           )}
 
           {/* Step 3: Success - 결과 표시 */}
@@ -655,50 +765,53 @@ export default function StoresPage() {
               </div>
 
               {/* 카드 내용 */}
-              <div className="p-5">
+              <div className="p-6">
                 {/* 매장명 */}
-                <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2">{store.name}</h3>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-brand/10 rounded-lg flex items-center justify-center">
+                    <Image
+                      src="/icons/건물.png"
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="w-5 h-5 object-contain"
+                    />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-black text-gray-900 line-clamp-2 group-hover:text-brand transition-colors">
+                    {store.name}
+                  </h3>
+                </div>
 
                 {/* 주소 */}
-                <div className="flex items-start mb-2">
-                  <svg
-                    className="w-4 h-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                <div className="flex items-start gap-3 mb-3 bg-gray-50 p-3 rounded-xl">
+                  <div className="flex-shrink-0 w-8 h-8 bg-brand/10 rounded-lg flex items-center justify-center">
+                    <Image
+                      src="/icons/지도핀.png"
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="w-5 h-5 object-contain"
                     />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  <p className="text-xs text-gray-600 line-clamp-2">{store.address}</p>
+                  </div>
+                  <p className="text-sm text-gray-700 leading-relaxed pt-1 line-clamp-2">{store.address}</p>
                 </div>
 
                 {/* 전화번호 */}
-                <div className="flex items-center mb-4">
-                  <svg
-                    className="w-4 h-4 text-gray-400 mr-2 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                <div className="flex items-center gap-3 mb-5 bg-gray-50 p-3 rounded-xl">
+                  <div className="flex-shrink-0 w-8 h-8 bg-brand/10 rounded-lg flex items-center justify-center">
+                    <Image
+                      src="/icons/전화.png"
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="w-5 h-5 object-contain"
+                      onError={(e) => {
+                        // 전화 아이콘이 없으면 대체 이미지 사용
+                        e.currentTarget.src = "/icons/채팅, 고객센터.png";
+                      }}
                     />
-                  </svg>
-                  <span className="text-xs text-gray-500">{store.phone}</span>
+                  </div>
+                  <span className="text-sm text-gray-700 font-bold pt-1">{store.phone}</span>
                 </div>
 
                 {/* 액션 버튼 */}
@@ -709,10 +822,19 @@ export default function StoresPage() {
                 />
 
                 {/* 지역 태그 */}
-                <div className="mt-3 pt-3 border-t border-gray-100">
-                  <span className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-xs font-medium">
-                    📍 {store.region}
-                  </span>
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-brand/10 to-brand/5 px-3 py-1.5 rounded-full">
+                    <Image
+                      src="/icons/지도핀.png"
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="w-4 h-4 object-contain"
+                    />
+                    <span className="text-xs font-bold text-gray-800">
+                      {store.region}
+                    </span>
+                  </div>
                 </div>
               </div>
               </div>
