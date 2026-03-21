@@ -609,6 +609,8 @@ export default function StoresPage() {
                   openStoreDetail(store);
                 }}
                 focusRegion={selectedRegion !== '전체'}
+                selectedRegion={selectedRegion}
+                selectedSubRegion={selectedSubRegion}
               />
             </div>
           </div>

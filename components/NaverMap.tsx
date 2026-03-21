@@ -8,9 +8,35 @@ interface NaverMapProps {
   userLocation: { lat: number; lng: number } | null;
   onStoreClick?: (store: Store) => void;
   focusRegion?: boolean; // 세분화 지역 선택 시 해당 지역만 집중
+  selectedRegion?: string; // 선택된 대분류 지역
+  selectedSubRegion?: string; // 선택된 세부 지역
 }
 
-export default function NaverMap({ stores, userLocation, onStoreClick, focusRegion = false }: NaverMapProps) {
+// 지역별 최적 뷰포트 설정
+const REGION_VIEWPORTS: Record<string, { lat: number; lng: number; zoom: number }> = {
+  // 인천
+  '인천-서부': { lat: 37.5391, lng: 126.675, zoom: 14 },
+  '인천-북부': { lat: 37.505, lng: 126.72, zoom: 13 },
+  '인천-남부': { lat: 37.464, lng: 126.69, zoom: 13 },
+  '인천-송도': { lat: 37.385, lng: 126.65, zoom: 13 },
+  // 부천
+  '경기-부천북부': { lat: 37.507, lng: 126.76, zoom: 13 },
+  '경기-부천남부': { lat: 37.495, lng: 126.78, zoom: 13 },
+  // 서울
+  '서울-동부': { lat: 37.481, lng: 126.955, zoom: 13 },
+  '서울-서부': { lat: 37.526, lng: 126.865, zoom: 13 },
+  // 성남/분당
+  '경기-성남/분당': { lat: 37.390, lng: 127.12, zoom: 12 },
+};
+
+export default function NaverMap({
+  stores,
+  userLocation,
+  onStoreClick,
+  focusRegion = false,
+  selectedRegion = '전체',
+  selectedSubRegion = '전체'
+}: NaverMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<any>(null);
   const [markers, setMarkers] = useState<any[]>([]);
@@ -242,6 +268,20 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
     if (!map || !window.naver || stores.length === 0) return;
 
     const naver = window.naver;
+
+    // 특정 세부 지역 선택 시 해당 지역의 최적 뷰포트 적용
+    const viewportKey = selectedRegion !== '전체' && selectedSubRegion !== '전체'
+      ? `${selectedRegion}-${selectedSubRegion}`
+      : null;
+
+    if (viewportKey && REGION_VIEWPORTS[viewportKey]) {
+      const viewport = REGION_VIEWPORTS[viewportKey];
+      map.setCenter(new naver.maps.LatLng(viewport.lat, viewport.lng));
+      map.setZoom(viewport.zoom);
+      return;
+    }
+
+    // 기본 동작: 모든 매장을 포함하는 bounds 계산
     const bounds = new naver.maps.LatLngBounds();
 
     stores.forEach((store) => {
@@ -259,7 +299,7 @@ export default function NaverMap({ stores, userLocation, onStoreClick, focusRegi
       : { top: 80, right: 80, bottom: 80, left: 80 };
 
     map.fitBounds(bounds, padding);
-  }, [map, stores, userLocation, focusRegion]);
+  }, [map, stores, userLocation, focusRegion, selectedRegion, selectedSubRegion]);
 
   // 지도 클릭 시 모든 InfoWindow 닫기
   useEffect(() => {
