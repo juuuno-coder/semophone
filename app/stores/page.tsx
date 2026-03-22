@@ -237,9 +237,8 @@ export default function StoresPage() {
                 </svg>
               </button>
 
-              <div className="mt-6 flex items-center justify-center gap-2 text-xs text-gray-500">
-                <Image src="/icons/보안.png" alt="" width={20} height={20} className="w-5 h-5 object-contain" />
-                <span>위치 정보는 가까운 매장 찾기에만 사용되며 저장되지 않습니다</span>
+              <div className="mt-6 text-center text-xs text-gray-500">
+                🔒 위치 정보는 가까운 매장 찾기에만 사용되며 저장되지 않습니다
               </div>
 
               <p className="text-sm text-brand font-bold mt-3">
@@ -783,35 +782,15 @@ export default function StoresPage() {
                 </div>
 
                 {/* 주소 */}
-                <div className="flex items-start gap-3 mb-3 bg-gray-50 p-3 rounded-xl">
-                  <div className="flex-shrink-0 w-8 h-8 bg-brand/10 rounded-lg flex items-center justify-center">
-                    <Image
-                      src="/icons/지도핀.png"
-                      alt=""
-                      width={20}
-                      height={20}
-                      className="w-5 h-5 object-contain"
-                    />
-                  </div>
-                  <p className="text-sm text-gray-700 leading-relaxed pt-1 line-clamp-2">{store.address}</p>
+                <div className="mb-3 bg-gray-50 p-3 rounded-xl">
+                  <p className="text-xs text-gray-500 mb-1 font-semibold">주소</p>
+                  <p className="text-sm text-gray-900 leading-relaxed line-clamp-2">{store.address}</p>
                 </div>
 
                 {/* 전화번호 */}
-                <div className="flex items-center gap-3 mb-5 bg-gray-50 p-3 rounded-xl">
-                  <div className="flex-shrink-0 w-8 h-8 bg-brand/10 rounded-lg flex items-center justify-center">
-                    <Image
-                      src="/icons/전화.png"
-                      alt=""
-                      width={20}
-                      height={20}
-                      className="w-5 h-5 object-contain"
-                      onError={(e) => {
-                        // 전화 아이콘이 없으면 대체 이미지 사용
-                        e.currentTarget.src = "/icons/채팅, 고객센터.png";
-                      }}
-                    />
-                  </div>
-                  <span className="text-sm text-gray-700 font-bold pt-1">{store.phone}</span>
+                <div className="mb-5 bg-gray-50 p-3 rounded-xl">
+                  <p className="text-xs text-gray-500 mb-1 font-semibold">연락처</p>
+                  <p className="text-sm text-gray-900 font-bold">{store.phone}</p>
                 </div>
 
                 {/* 액션 버튼 */}
@@ -823,18 +802,9 @@ export default function StoresPage() {
 
                 {/* 지역 태그 */}
                 <div className="mt-4 pt-4 border-t border-gray-200">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-brand/10 to-brand/5 px-3 py-1.5 rounded-full">
-                    <Image
-                      src="/icons/지도핀.png"
-                      alt=""
-                      width={16}
-                      height={16}
-                      className="w-4 h-4 object-contain"
-                    />
-                    <span className="text-xs font-bold text-gray-800">
-                      {store.region}
-                    </span>
-                  </div>
+                  <span className="inline-block bg-gradient-to-r from-brand/10 to-brand/5 px-3 py-1.5 rounded-full text-xs font-bold text-gray-800">
+                    {store.region}
+                  </span>
                 </div>
               </div>
               </div>
